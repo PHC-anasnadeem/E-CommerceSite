@@ -47,13 +47,15 @@
   ==================================================--> 
   <script src="js/modernizr.js"></script>
 </head>
-<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
+
+
+<!--<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
       <title>Search</title>
       <path fill="currentColor" d="M19 3C13.488 3 9 7.488 9 13c0 2.395.84 4.59 2.25 6.313L3.281 27.28l1.439 1.44l7.968-7.969A9.922 9.922 0 0 0 19 23c5.512 0 10-4.488 10-10S24.512 3 19 3zm0 2c4.43 0 8 3.57 8 8s-3.57 8-8 8s-8-3.57-8-8s3.57-8 8-8z" />
-    </symbol>
-    <symbol xmlns="http://www.w3.org/2000/svg" id="user" viewBox="0 0 16 16">
+    </symbol>-->
+    <!--<symbol xmlns="http://www.w3.org/2000/svg" id="user" viewBox="0 0 16 16">
       <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
     </symbol>
     <symbol xmlns="http://www.w3.org/2000/svg" id="cart" viewBox="0 0 16 16">
@@ -115,6 +117,14 @@
     </symbol>
     <symbol xmlns="http://www.w3.org/2000/svg" id="navbar-icon" viewBox="0 0 16 16">
       <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0 0 1h7a.5.5 0 0 0 .5-.5zm0-3a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0 0 1h11a.5.5 0 0 0 .5-.5z" />
+    </symbol>-->
+  <!--</svg>-->
+
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <title>Search</title>
+      <path fill="currentColor" d="M19 3C13.488 3 9 7.488 9 13c0 2.395.84 4.59 2.25 6.313L3.281 27.28l1.439 1.44l7.968-7.969A9.922 9.922 0 0 0 19 23c5.512 0 10-4.488 10-10S24.512 3 19 3zm0 2c4.43 0 8 3.57 8 8s-3.57 8-8 8s-8-3.57-8-8s3.57-8 8-8z" />
     </symbol>
   </svg>
 
@@ -133,31 +143,16 @@
       <!-- Categories List -->
       <h5 class="cat-list-title">Browse Categories</h5>
       <ul class="cat-list">
-        <li class="cat-list-item">
-          <a href="#" title="Mobile Phones">Mobile Phones</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Smart Watches">Smart Watches</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Headphones">Headphones</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Accessories">Accessories</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Monitors">Monitors</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Speakers">Speakers</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Memory Cards">Memory Cards</a>
-        </li>
+        <li class="cat-list-item"><a href="#" title="Mobile Phones">Mobile Phones</a></li>
+        <li class="cat-list-item"><a href="#" title="Smart Watches">Smart Watches</a></li>
+        <li class="cat-list-item"><a href="#" title="Headphones">Headphones</a></li>
+        <li class="cat-list-item"><a href="#" title="Accessories">Accessories</a></li>
+        <li class="cat-list-item"><a href="#" title="Monitors">Monitors</a></li>
+        <li class="cat-list-item"><a href="#" title="Speakers">Speakers</a></li>
+        <li class="cat-list-item"><a href="#" title="Memory Cards">Memory Cards</a></li>
       </ul>
     </div>
   </div>
-
 
   <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
     <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
@@ -247,6 +242,7 @@
     </nav>
   </header>
 
+
   <section id="billboard" class="position-relative overflow-hidden bg-light-blue">
     <!-- Swiper Container -->
     <div class="swiper main-swiper">
@@ -291,12 +287,12 @@
     <!-- Swiper Navigation Arrows -->
     <div class="swiper-icon swiper-arrow swiper-arrow-prev">
       <svg class="chevron-left">
-        <use xlink:href="#chevron-left" />
+        <use xlink:href="#chevron-left"></use>
       </svg>
     </div>
     <div class="swiper-icon swiper-arrow swiper-arrow-next">
       <svg class="chevron-right">
-        <use xlink:href="#chevron-right" />
+        <use xlink:href="#chevron-right"></use>
       </svg>
     </div>
   </section>
@@ -309,7 +305,7 @@
           <div class="icon-box d-flex">
             <div class="icon-box-icon pe-3 pb-3">
               <svg class="cart-outline">
-                <use xlink:href="#cart-outline" />
+                <use xlink:href="#cart-outline"></use>
               </svg>
             </div>
             <div class="icon-box-content">
@@ -322,7 +318,7 @@
           <div class="icon-box d-flex">
             <div class="icon-box-icon pe-3 pb-3">
               <svg class="quality">
-                <use xlink:href="#quality" />
+                <use xlink:href="#quality"></use>
               </svg>
             </div>
             <div class="icon-box-content">
@@ -335,7 +331,7 @@
           <div class="icon-box d-flex">
             <div class="icon-box-icon pe-3 pb-3">
               <svg class="price-tag">
-                <use xlink:href="#price-tag" />
+                <use xlink:href="#price-tag"></use>
               </svg>
             </div>
             <div class="icon-box-content">
@@ -348,7 +344,7 @@
           <div class="icon-box d-flex">
             <div class="icon-box-icon pe-3 pb-3">
               <svg class="shield-plus">
-                <use xlink:href="#shield-plus" />
+                <use xlink:href="#shield-plus"></use>
               </svg>
             </div>
             <div class="icon-box-content">
@@ -470,6 +466,7 @@
     <div class="swiper-pagination position-absolute text-center"></div>
   </section>
 
+
   <!--------------------smart-watches----------------------------->
   <section id="smart-watches" class="product-store padding-large position-relative">
     <div class="container">
@@ -578,7 +575,6 @@
     </div>
     <div class="swiper-pagination position-absolute text-center"></div>
   </section>
-
   <!--------------------yearly-sale----------------------->
   <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge" style="background-image: url('images/single-image1.png'); background-position: right; background-repeat: no-repeat;">
     <div class="container">
@@ -590,13 +586,10 @@
             <a href="shop.html" class="btn btn-medium btn-dark text-uppercase btn-rounded-none">Shop Sale</a>
           </div>
         </div>
-        <div class="col-md-6 col-sm-12">
-
-        </div>
+        <div class="col-md-6 col-sm-12"></div>
       </div>
     </div>
   </section>
-
 
   <!-------------------------latest-blog----------------------->
   <section id="latest-blog" class="padding-large">
@@ -767,6 +760,7 @@
       </div>
     </div>
   </section>
+
 
   <!-----------------------instagram------------------------>
   <section id="instagram" class="padding-large overflow-hidden no-padding-top">
