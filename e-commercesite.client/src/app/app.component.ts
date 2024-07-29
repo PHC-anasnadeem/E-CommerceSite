@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import Swiper from 'swiper';
+/*import 'swiper/swiper.min.css';*/
 
 interface WeatherForecast {
   date: string;
@@ -11,27 +13,62 @@ interface WeatherForecast {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   public forecasts: WeatherForecast[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    /*this.getForecasts();*/
+    const swiper = new Swiper('.product-swiper', {
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-arrow-next',
+        prevEl: '.swiper-arrow-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 5000,
+      },
+    });
+
+    const swiperWatch = new Swiper('.product-watch-swiper', {
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-arrow-next',
+        prevEl: '.swiper-arrow-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 5000,
+      },
+    });
   }
 
-  //getForecasts() {
-  //  this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-  //    (result) => {
-  //      this.forecasts = result;
-  //    },
-  //    (error) => {
-  //      console.error(error);
-  //    }
-  //  );
-  //}
+  ngAfterViewInit() {
+    // Initialize Swiper after view has been initialized
+    const swiperMain = new Swiper('.main-swiper', {
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-arrow-next',
+        prevEl: '.swiper-arrow-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 5000,
+      },
+    });
+  }
 
   title = 'e-commercesite.client';
 }

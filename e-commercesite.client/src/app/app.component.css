@@ -18,7 +18,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* Search Popup */
+ Search Popup 
 .search-popup {
   position: fixed;
   top: 0;
@@ -77,7 +77,7 @@ body {
     text-decoration: none;
   }
 
-/* Header */
+ Header 
 .site-header {
   width: 100%;
   z-index: 1000;
@@ -129,7 +129,7 @@ body {
     color: #007bff;
   }
 
-/* Swiper */
+ Swiper 
 .swiper {
   position: relative;
   overflow: hidden;
@@ -153,7 +153,7 @@ body {
     padding: 10px 20px;
   }
 
-/* Icon Boxes */
+ Icon Boxes 
 .icon-box {
   display: flex;
   align-items: center;
@@ -174,7 +174,7 @@ body {
   margin: 0;
 }
 
-/* Product Store */
+ Product Store 
 .product-store .display-header {
   margin-bottom: 20px;
 }
@@ -215,19 +215,19 @@ body {
     color: #007bff;
   }
 
-/* Swiper Pagination */
+ Swiper Pagination 
 .swiper-pagination {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-/* Yearly Sale */
+ Yearly Sale 
 #yearly-sale {
   background-size: cover;
 }
 
-/* Latest Blog */
+ Latest Blog 
 .post-grid .card {
   margin-bottom: 20px;
 }
@@ -253,6 +253,35 @@ body {
     .post-grid .card-meta span.meta-category {
       color: #007bff;
     }
+
+#latest-blog {
+  background-color: #f8f9fa; /* Adjust according to your design */
+}
+
+.card {
+  overflow: hidden;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-meta {
+  font-size: 0.875rem;
+}
+
+.card-title a {
+  color: #333; /* Dark text color */
+  text-decoration: none;
+}
+
 
 /*
 Theme Name: Ministore
@@ -1400,4 +1429,38 @@ figure.instagram-item img.insta-image {
 .post-navigation:hover svg,
 .post-navigation:focus svg {
   fill: var(--primary-color);
+}
+
+.swiper {
+  position: relative;
+}
+
+.swiper-wrapper {
+  display: flex;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+}
+
+.swiper-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.swiper-arrow-prev {
+  left: 10px;
+}
+
+.swiper-arrow-next {
+  right: 10px;
+}
+
+.chevron-left,
+.chevron-right {
+  width: 24px;
+  height: 24px;
 }
