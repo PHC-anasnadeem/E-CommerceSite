@@ -115,67 +115,196 @@
         <li class="cat-list-item">
           <a href="#" title="Accessories">Accessories</a>
         </li>
+        <li class="cat-list-item">
+          <a href="#" title="Monitors">Monitors</a>
+        </li>
+        <li class="cat-list-item">
+          <a href="#" title="Speakers">Speakers</a>
+        </li>
+        <li class="cat-list-item">
+          <a href="#" title="Memory Cards">Memory Cards</a>
+        </li>
       </ul>
 
     </div>
   </div>
 
-  <header id="header" class="site-header bg text-white position-fixed w-100">
-    <div class="container-fluid d-flex align-items-center justify-content-between py-2">
-      <!-- Logo and Toggle Button -->
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
-        <img src="images/main-logo" class="logo me-2" />
-        <h1 class="h5 mb-0">Mini Store</h1>
-      </a>
-      <button class="navbar-toggler d-lg-none text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <!-- Search and Categories (Desktop View) -->
-      <div class="d-none d-lg-flex flex-grow-1 justify-content-center align-items-center">
-        <form role="search" method="get" class="search-form d-flex" action="">
-          <input type="search" id="search-form" class="form-control search-field" placeholder="Type and press enter" name="s" />
-          <button type="submit" class="btn btn-outline-secondary ms-2 text-white">
+  <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
+    <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="images/main-logo.png" class="logo">
+        </a>
+        <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <svg class="navbar-icon">
+            <use xlink:href="#navbar-icon"></use>
+          </svg>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+          <div class="offcanvas-header px-4 pb-0">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/main-logo.png" class="logo">
+            </a>
+            <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link me-4 active" href="#billboard">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link me-4" href="#laptops">laptops</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link me-4" href="#lcds">LCDs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link me-4" href="#accessories">Accessories</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Pages</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="about.html" class="dropdown-item">About</a>
+                  </li>
+                  <li>
+                    <a href="blog.html" class="dropdown-item">Blog</a>
+                  </li>
+                  <li>
+                    <a href="shop.html" class="dropdown-item">Shop</a>
+                  </li>
+                  <li>
+                    <a href="cart.html" class="dropdown-item">Cart</a>
+                  </li>
+                  <li>
+                    <a href="checkout.html" class="dropdown-item">Checkout</a>
+                  </li>
+                  <li>
+                    <a href="single-post.html" class="dropdown-item">Single Post</a>
+                  </li>
+                  <li>
+                    <a href="single-product.html" class="dropdown-item">Single Product</a>
+                  </li>
+                  <li>
+                    <a href="contact.html" class="dropdown-item">Contact</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <div class="user-items ps-5">
+                  <ul class="d-flex justify-content-end list-unstyled">
+                    <li class="search-item pe-3">
+                      <a href="#" class="search-button">
+                        <svg class="search">
+                          <use xlink:href="#search"></use>
+                        </svg>
+                      </a>
+                    </li>
+                    <li class="pe-3">
+                      <a href="#">
+                        <svg class="user">
+                          <use xlink:href="#user"></use>
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="cart.html">
+                        <svg class="cart">
+                          <use xlink:href="#cart"></use>
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!--<header id="header" class="site-header bg text-white position-fixed w-100">
+    <div class="container-fluid d-flex align-items-center justify-content-between py-2">-->
+  <!-- Logo and Toggle Button -->
+  <!--<a class="navbar-brand d-flex align-items-center" href="index.html">
+    <img src="images/main-logo" class="logo me-2" />
+    <h1 class="h5 mb-0">Mini Store</h1>
+  </a>
+  <button class="navbar-toggler d-lg-none text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>-->
+  <!--<div class="search-popup">
+    <div class="search-popup-container">
+
+      <form role="search" method="get" class="search-form" action="">
+        <input type="search" id="search-form" class="search-field" placeholder="Type and press enter" value="" name="s" />
+        <button type="submit" class="search-submit"><svg class="search"><use xlink:href="#search"></use></svg></button>
+      </form>
+
+      <h5 class="cat-list-title">Browse Categories</h5>
+
+      <ul class="cat-list">
+        <li class="cat-list-item">
+          <a href="#" title="Mobile Phones">Mobile Phones</a>
+        </li>
+        <li class="cat-list-item">
+          <a href="#" title="Smart Watches">Smart Watches</a>
+        </li>
+        <li class="cat-list-item">
+          <a href="#" title="Headphones">Headphones</a>
+        </li>
+        <li class="cat-list-item">
+          <a href="#" title="Accessories">Accessories</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>-->
+  <!-- Search and Categories (Desktop View) -->
+  <!--<div class="d-none d-lg-flex flex-grow-1 justify-content-center align-items-center">
+    <form role="search" method="get" class="search-form d-flex" action="">
+      <input type="search" id="search-form" class="form-control search-field" placeholder="Type and press enter" name="s" />
+      <button type="submit" class="btn btn-outline-secondary ms-2 text-white">
+        <svg class="bi bi-search" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l4.852 4.853a1 1 0 0 0 1.415-1.415l-4.853-4.852zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+        </svg>
+      </button>
+    </form>
+  </div>-->
+  <!-- User Icons -->
+  <!--<div class="user-items d-none d-lg-flex align-items-center">
+      <ul class="d-flex list-unstyled mb-0">
+        <li class="me-3">
+          <a href="#" class="search-button text-white">
             <svg class="bi bi-search" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l4.852 4.853a1 1 0 0 0 1.415-1.415l-4.853-4.852zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
             </svg>
-          </button>
-        </form>
-      </div>
-
-      <!-- User Icons -->
-      <div class="user-items d-none d-lg-flex align-items-center">
-        <ul class="d-flex list-unstyled mb-0">
-          <li class="me-3">
-            <a href="#" class="search-button text-white">
-              <svg class="bi bi-search" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l4.852 4.853a1 1 0 0 0 1.415-1.415l-4.853-4.852zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-              </svg>
-            </a>
-          </li>
-          <li class="me-3">
-            <a href="#" class="text-white">
-              <svg class="bi bi-person" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                <path fill-rule="evenodd" d="M8 9a5 5 0 0 0-4.5 2.962.5.5 0 0 0 .5.538h8a.5.5 0 0 0 .5-.538A5 5 0 0 0 8 9z" />
-              </svg>
-            </a>
-          </li>
-          <li>
-            <a href="cart.html" class="text-white">
-              <svg class="bi bi-cart" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 1a1 1 0 0 1 1-1h1.191a.5.5 0 0 1 .485.379L3.5 4H15a1 1 0 0 1 .971 1.242l-1.5 6A1 1 0 0 1 13.5 12H4a1 1 0 0 1-.97-.758L.54 1.68A1 1 0 0 1 0 1z" />
-                <path fill-rule="evenodd" d="M4.418 6l1 4H12.5l1-4H4.418z" />
-                <path d="M7 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM13 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-              </svg>
-            </a>
-          </li>
-        </ul>
-      </div>
+          </a>
+        </li>
+        <li class="me-3">
+          <a href="#" class="text-white">
+            <svg class="bi bi-person" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+              <path fill-rule="evenodd" d="M8 9a5 5 0 0 0-4.5 2.962.5.5 0 0 0 .5.538h8a.5.5 0 0 0 .5-.538A5 5 0 0 0 8 9z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="cart.html" class="text-white">
+            <svg class="bi bi-cart" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 1a1 1 0 0 1 1-1h1.191a.5.5 0 0 1 .485.379L3.5 4H15a1 1 0 0 1 .971 1.242l-1.5 6A1 1 0 0 1 13.5 12H4a1 1 0 0 1-.97-.758L.54 1.68A1 1 0 0 1 0 1z" />
+              <path fill-rule="evenodd" d="M4.418 6l1 4H12.5l1-4H4.418z" />
+              <path d="M7 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM13 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+            </svg>
+          </a>
+        </li>
+      </ul>
     </div>
-
-    <!-- Offcanvas Menu for Mobile View -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+  </div>-->
+  <!-- Offcanvas Menu for Mobile View -->
+  <!--<div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
       <div class="offcanvas-header">
         <a class="navbar-brand" href="index.html">
           <img src="images/main-logo.png" class="logo" alt="Main Logo">
@@ -209,9 +338,7 @@
         </ul>
       </div>
     </div>
-  </header>
-
-
+  </header>-->
   <!-- Main Content -->
   <section id="billboard" class="position-relative overflow-hidden bg-light-blue">
     <!-- Swiper Container -->
