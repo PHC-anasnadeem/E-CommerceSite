@@ -35,9 +35,31 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/styles.scss",
+              "src/main-styles.scss",
+              "src/assets/fonts/Material_Icons.css",
+              "node_modules/devextreme/dist/css/dx.common.css",
+
+              "node_modules/devextreme/dist/css/dx.material.blue.light.compact.css",
+              "node_modules/ngx-lightbox/lightbox.css",
+
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/sweetalert2/dist/sweetalert2.min.css",
+
+              "src/assets/app/css/vendors.css",
+              "src/assets/scss/app.scss",
+
+              "src/assets/scss/style.scss",
+              "src/assets/css/Custom.css",
+              "src/assets/css/common.css"
             ],
-            "scripts": []
+            "scripts": [
+
+              "src/assets/app/vendors/js/vendors.min.js",
+
+              "node_modules/sweetalert2/dist/sweetalert2.min.js"
+            ]
           },
           "configurations": {
             "production": {

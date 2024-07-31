@@ -1,11 +1,9 @@
-/* Host Styling */
 :host {
   max-width: 1280px;
   padding: 2rem;
   text-align: center;
 }
 
-/* Reset some basic styles */
 body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, img {
   margin: 0;
   padding: 0;
@@ -13,7 +11,6 @@ body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, img {
   vertical-align: baseline;
 }
 
-/* Global Styles */
 html, body {
   height: 100%;
   margin: 0;
@@ -32,20 +29,17 @@ footer {
   margin-top: auto;
 }
 
-/* Container */
 .container,
 .container-fluid {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Logo */
 .logo {
   width: 40px;
   height: auto;
 }
 
-/* Header */
 .site-header {
   top: 0;
   left: 0;
@@ -53,8 +47,8 @@ footer {
   z-index: 1000;
   padding: 10px 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  background-color: #333; /* Dark grey background */
-  color: white; /* White text color */
+  background-color: #333;
+  color: white;
 }
 
 .navbar-brand h1 {
@@ -70,7 +64,6 @@ footer {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 30 30'><path d='M4 7h22M4 15h22M4 23h22'/></svg>");
 }
 
-/* Search Form */
 .search-form {
   max-width: 600px;
   width: 100%;
@@ -104,7 +97,6 @@ footer {
     fill: #333;
   }
 
-/* User Items */
 .user-items ul {
   display: flex;
 }
@@ -117,10 +109,9 @@ footer {
 .user-items svg {
   width: 24px;
   height: 24px;
-  fill: black; /* Consistent fill color for user icons */
+  fill: black;
 }
 
-/* Swiper Styles */
 .swiper {
   position: relative;
 }
@@ -143,7 +134,6 @@ footer {
   margin-top: 20px;
 }
 
-/* Image Holder */
 .image-holder {
   text-align: center;
 }
@@ -153,7 +143,6 @@ footer {
     height: auto;
   }
 
-/* Swiper Arrows */
 .swiper-arrow {
   position: absolute;
   top: 50%;
@@ -173,7 +162,6 @@ footer {
   right: 10px;
 }
 
-/* Category Styles */
 h2.category-title {
   font-size: 2rem;
   text-align: center;
@@ -224,7 +212,6 @@ h2.category-title {
     margin-bottom: 0.5rem;
   }
 
-/* Icon Box Styles */
 .icon-box {
   background: #f9f9f9;
   padding: 1rem;
@@ -247,97 +234,130 @@ h2.category-title {
   color: #777;
 }
 
-/* Footer */
 #footer {
-  background-color: #343a40; /* Dark background color */
-  color: #ffffff; /* Light text color */
-  padding: 40px 0; /* Padding for top and bottom */
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 40px 0;
+  margin-top: 20px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer-top-area {
-  margin-bottom: 30px; /* Space between top and bottom areas */
+  margin-bottom: 30px;
 }
 
 .footer-menu {
-  margin-bottom: 20px; /* Space below each footer menu section */
+  margin-bottom: 20px;
+  color: black;
 }
 
   .footer-menu h5 {
     font-size: 18px;
-    margin-bottom: 15px; /* Space below heading */
+    margin-bottom: 15px;
+    color: black;
   }
 
   .footer-menu ul {
-    padding: 0; /* Remove default padding */
-    list-style: none; /* Remove default list styling */
+    padding: 0;
+    list-style: none;
   }
 
     .footer-menu ul li {
-      margin-bottom: 10px; /* Space between list items */
+      margin-bottom: 10px;
     }
 
       .footer-menu ul li a {
-        color: #ffffff; /* Link color */
-        text-decoration: none; /* Remove underline */
-        transition: color 0.3s; /* Smooth color transition */
+        color: black;
+        text-decoration: none;
+        transition: color 0.3s;
       }
 
         .footer-menu ul li a:hover {
-          color: #17a2b8; /* Change color on hover */
+          color: #17a2b8;
         }
 
 .social-links {
-  margin-top: 20px; /* Space above social links */
+  margin-top: 20px;
 }
 
   .social-links ul {
-    display: flex; /* Flex display for horizontal alignment */
-    padding: 0; /* Remove default padding */
-    list-style: none; /* Remove default list styling */
+    display: flex;
+    padding: 0;
+    list-style: none;
   }
 
     .social-links ul li {
-      margin-right: 15px; /* Space between icons */
+      margin-right: 15px;
     }
 
       .social-links ul li a {
-        display: block; /* Make link block level */
-        width: 24px; /* Set width */
-        height: 24px; /* Set height */
+        display: block;
+        width: 24px;
+        height: 24px;
       }
 
         .social-links ul li a svg {
           width: 100%;
           height: 100%;
-          fill: #ffffff; /* Icon color */
+          fill: #ffffff;
         }
 
           .social-links ul li a svg:hover {
-            fill: #17a2b8; /* Change color on hover */
+            fill: #17a2b8;
           }
 
 #footer-bottom {
-  background-color: #343a40;
-  color: #f8f9fa;
-  border-top: 1px solid #555555; /* Top border for separation */
-  padding-top: 20px; /* Padding above footer bottom */
+  background-color: #fff;
+  color: black;
+  border-top: 1px solid #555555;
+  padding: 20px 0;
+  margin-top: 20px;
 }
+
+  #footer-bottom .container {
+    padding: 0;
+  }
+
+  #footer-bottom .row {
+    margin: 0;
+  }
+
+  #footer-bottom .shipping,
+  #footer-bottom .payment-method,
+  #footer-bottom .copyright {
+    margin: 0;
+    padding: 0;
+  }
+
+  #footer-bottom .card-wrap img {
+    vertical-align: bottom;
+  }
+
+  #footer-bottom p, #footer-bottom a {
+    color: black;
+  }
+
+    #footer-bottom a:hover {
+      color: #007bff;
+    }
 
 .shipping, .payment-method {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px; /* Space below each section */
+  margin-bottom: 20px;
   font-size: 14px;
 }
 
   .shipping p, .payment-method p {
-    margin: 0; /* Remove default margin */
+    margin: 0;
   }
 
 .card-wrap img {
-  max-width: 50px; /* Maximum width for images */
-  margin-right: 10px; /* Space between images */
+  max-width: 50px;
+  margin-right: 10px;
 }
 
   .card-wrap img:not(:last-child) {
@@ -345,35 +365,25 @@ h2.category-title {
   }
 
 .copyright {
-  text-align: center; /* Center text */
+  text-align: center;
 }
 
-.footer-bottom a {
-  color: #f8f9fa;
-}
-
-  .footer-bottom a:hover {
-    text-decoration: underline;
-  }
-
-/* Hover and Focus States */
 .search-form button:hover,
 .user-items a:hover,
 .navbar-brand:hover,
 .navbar-nav .nav-link:hover,
 .dropdown-item:hover {
-  color: #007bff; /* Bootstrap primary color */
+  color: #007bff;
 }
 
 .dropdown-item:hover {
-  background-color: #f8f9fa; /* Bootstrap light color */
+  background-color: #f8f9fa;
 }
 
 .search, .user, .cart {
   fill: black;
 }
 
-/* Responsive Styles */
 @media (max-width: 992px) {
   .site-header {
     position: relative;
@@ -381,7 +391,7 @@ h2.category-title {
 
   .user-items {
     display: none;
-    color:black;
+    color: black;
   }
 
   .search-form {
@@ -393,4 +403,6 @@ h2.category-title {
   }
 
   .swiper-slide {
-    height: auto
+    height: auto;
+  }
+}
