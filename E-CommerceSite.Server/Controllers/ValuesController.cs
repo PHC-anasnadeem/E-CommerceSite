@@ -1,5 +1,13 @@
 ﻿
+using E_CommerceSite.Server.Data.E_CommerceSite.Server.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace E_CommerceSite.Server.Controllers
@@ -8,7 +16,6 @@ namespace E_CommerceSite.Server.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-    
         private readonly IAuthService _authService;
 
         public ValuesController(IAuthService authService)
@@ -16,13 +23,13 @@ namespace E_CommerceSite.Server.Controllers
             _authService = authService;
         }
 
-        // POST: api/values/login
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        [AllowAnonymous]
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(string username, string password)
         {
             if (ModelState.IsValid)
             {
-                var result = await _authService.AuthenticateAsync(request.Username, request.Password);
+                var result = await _authService.AuthenticateAsync(username, password);
 
                 if (result.IsSuccess)
                 {
@@ -37,6 +44,66 @@ namespace E_CommerceSite.Server.Controllers
             return BadRequest(new { Message = "Invalid data" });
         }
     }
+
+    public class AuthService : IAuthService
+    {
+        private readonly ApplicationDbContext _context;
+        private readonly string _secretKey;
+
+        public AuthService(ApplicationDbContext context)
+        {
+            _context = context;
+            _secretKey = "ecommercesiteforzubairtraders123456789";
+        }
+
+        public async Task<AuthResult> AuthenticateAsync(string username, string password)
+        {
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+
+            if (user != null)
+            {
+                var token = GenerateJwtToken(user.Username);
+                return new AuthResult
+                {
+                    IsSuccess = true,
+                    Token = token
+                };
+            }
+
+            return new AuthResult
+            {
+                IsSuccess = false,
+                Token = null
+            };
+        }
+
+
+        private string GenerateJwtToken(string username)
+        {
+            var claims = new[]
+            {
+            new Claim(JwtRegisteredClaimNames.Sub, username),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
+
+            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_secretKey));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = creds
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+    }
+
+
 
     public class LoginRequest
     {

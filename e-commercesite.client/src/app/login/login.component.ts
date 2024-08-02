@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../product.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -27,38 +29,50 @@ export class LoginComponent implements OnInit {
     });
   }
 
-onSubmit(): void {
-  if(this.loginForm.valid) {
-  this.productService.login(this.loginForm.value).subscribe(
-    (data: any[]) => {
-      this.login = data;
-      console.log('Login successful:', this.login);
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      debugger;
+      this.productService.login(this.loginForm.value).subscribe(
+        (data: any) => {
+          debugger;
+          console.log('Login successful:', data);
+
+          // Store the token in localStorage
+          localStorage.setItem('authToken', data.token);
+
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Login Successful',
+            text: 'You have successfully logged in!',
+            confirmButtonText: 'OK'
+          }).then(() => {
+   
+            this.router.navigate(['/home']);
+          });
+        },
+        (error) => {
+          console.error('Login failed:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Failed',
+            text: 'Invalid username or password.',
+            confirmButtonText: 'Try Again'
+          });
+        }
+      );
+    } else {
       Swal.fire({
-        icon: 'success',
-        title: 'Login Successful',
-        text: 'You have successfully logged in!',
+        icon: 'warning',
+        title: 'Invalid Form',
+        text: 'Please fill out all required fields.',
         confirmButtonText: 'OK'
       });
-    },
-    (error) => {
-      console.error('Login failed:', error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Login Failed',
-        text: 'Invalid username or password.',
-        confirmButtonText: 'Try Again'
-      });
+      console.log('Form is not valid');
     }
-  );
-} else {
-  Swal.fire({
-    icon: 'warning',
-    title: 'Invalid Form',
-    text: 'Please fill out all required fields.',
-    confirmButtonText: 'OK'
-  });
-  console.log('Form is not valid');
-}
-}
+  }
+
+
+
 
 }
