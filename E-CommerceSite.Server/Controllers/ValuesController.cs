@@ -43,6 +43,10 @@ namespace E_CommerceSite.Server.Controllers
 
             return BadRequest(new { Message = "Invalid data" });
         }
+
+
+
+
     }
 
     public class AuthService : IAuthService

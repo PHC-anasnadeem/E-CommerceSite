@@ -1,5 +1,6 @@
 ﻿namespace E_CommerceSite.Server.Data
 {
+    using global::E_CommerceSite.Server.Model;
     using Microsoft.EntityFrameworkCore;
 
     namespace E_CommerceSite.Server.Controllers
@@ -12,14 +13,11 @@
             }
 
             public DbSet<User> Users { get; set; }
+            public DbSet<Product> AdminProducts { get; set; }
         }
 
-        public class User
-        {
-            public int Id { get; set; }
-            public string Username { get; set; }
-            public string Password { get; set; }
-        }
+
+    
     }
 
 }

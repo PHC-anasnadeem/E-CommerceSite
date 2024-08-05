@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'admin-dashboard', loadChildren: () => import('./admin-dashboard/admin-dashboard.module').then(m => m.AdminDashboardModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
