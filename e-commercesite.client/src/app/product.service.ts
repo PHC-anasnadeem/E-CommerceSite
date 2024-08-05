@@ -15,46 +15,24 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   Login(loginData: { username: string; password: string }): Observable<any> {
-    debugger;
     const url = `${this.loginUrl}?username=${encodeURIComponent(loginData.username)}&password=${encodeURIComponent(loginData.password)}`;
-    return this.http.post<any>(url, null)
-      .pipe(
-        map(res => {
-      debugger;
-        return res;
-    })
-    );
-  }
-
-
-  login2(loginData: { username: string; password: string }): Observable<any> {
-    debugger;
-    const url = this.loginUrl;
-    const body = { username: loginData.username, password: loginData.password };
-    return this.http.post<any>(url, body).pipe(
-      tap(response => {
-        debugger;
-        console.log('Response from API:', response);
-      }),
+    return this.http.post<any>(url, null).pipe(
+      map(res => res),
       catchError(this.handleError)
     );
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.error('Server error:', error);
-    return throwError(() => new Error('An error occurred while logging in'));
-  }
-
-
-  login1(loginData: { username: string; password: string }): Observable<any> {
-    debugger;
-    return this.http.post<any>(this.loginUrl, loginData).pipe(
-      catchError(error => {
-        debugger;
-        console.error('Error occurred:', error);
-        return throwError(() => new Error('An error occurred while logging in'));
-      })
-    );
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 
   getLaptops() {

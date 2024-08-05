@@ -33,7 +33,8 @@ namespace E_CommerceSite.Server.Controllers
 
                 if (result.IsSuccess)
                 {
-                    return Ok(new { Token = result.Token });
+                    //return Ok(new { Token = result.Token });
+                    return Ok();
                 }
                 else
                 {

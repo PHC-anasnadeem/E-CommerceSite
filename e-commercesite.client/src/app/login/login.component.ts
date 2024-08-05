@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
             confirmButtonText: 'OK'
           }).then(() => {
    
-            this.router.navigate(['/home']);
+            this.router.navigate(['/admin-dashboard']);
           });
         },
         (error) => {
