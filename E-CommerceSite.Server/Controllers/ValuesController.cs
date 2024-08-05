@@ -1,5 +1,5 @@
 ﻿
-using E_CommerceSite.Server.Data.E_CommerceSite.Server.Controllers;
+using E_CommerceSite.Server.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +34,7 @@ namespace E_CommerceSite.Server.Controllers
                 if (result.IsSuccess)
                 {
                     return Ok(new { Token = result.Token });
-                   // return Ok();
+                    //return Ok();
                 }
                 else
                 {

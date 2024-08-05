@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using E_CommerceSite.Server.Data.E_CommerceSite.Server.Controllers;
+using E_CommerceSite.Server.Data;
 using E_CommerceSite.Server.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
