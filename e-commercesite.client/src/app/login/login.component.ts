@@ -32,12 +32,11 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       debugger;
-      this.productService.login(this.loginForm.value).subscribe(
+      this.productService.Login(this.loginForm.value).subscribe(
         (data: any) => {
           debugger;
           console.log('Login successful:', data);
 
-          // Store the token in localStorage
           localStorage.setItem('authToken', data.token);
 
 
@@ -52,6 +51,7 @@ export class LoginComponent implements OnInit {
           });
         },
         (error) => {
+          debugger;
           console.error('Login failed:', error);
           Swal.fire({
             icon: 'error',

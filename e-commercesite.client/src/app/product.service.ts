@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap, map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,39 +13,48 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  login(loginData: { username: string; password: string }): Observable<any> {
+  Login(loginData: { username: string; password: string }): Observable<any> {
     debugger;
     const url = `${this.loginUrl}?username=${encodeURIComponent(loginData.username)}&password=${encodeURIComponent(loginData.password)}`;
-    return this.http.post<any>(url, null);
+    return this.http.post<any>(url, null)
+      .pipe(
+        map(res => {
+      debugger;
+        return res;
+    })
+    );
   }
 
-  //login1(loginData: any = {}): Observable<any> {
-  //  // Prepare URL-encoded data
-  //  const data = new URLSearchParams({
-  //    grant_type: 'password',
-  //    username: loginData.Username || '',
-  //    password: loginData.Password || '',
-  //    Registration_Number: loginData.Registration_Number || '',
-  //    isHCEUser: loginData.isHCEUser || ''
-  //  }).toString();
 
-  //  // Set headers for URL-encoded content
-  //  const headers = new HttpHeaders({
-  //    'Content-Type': 'application/x-www-form-urlencoded'
-  //  });
+  login2(loginData: { username: string; password: string }): Observable<any> {
+    debugger;
+    const url = this.loginUrl;
+    const body = { username: loginData.username, password: loginData.password };
+    return this.http.post<any>(url, body).pipe(
+      tap(response => {
+        debugger;
+        console.log('Response from API:', response);
+      }),
+      catchError(this.handleError)
+    );
+  }
 
-  //  return this.http.post<any>(
-  //    `${this.loginUrl}Token`,
-  //    data,
-  //    { headers }
-  //  ).pipe(
-  //    tap((response: any) => {
-  //      // Handle the response if needed
-  //      console.log('Login successful:', response);
-  //      return response;
-  //    })
-  //  );
-  //}
+  private handleError(error: HttpErrorResponse) {
+    console.error('Server error:', error);
+    return throwError(() => new Error('An error occurred while logging in'));
+  }
+
+
+  login1(loginData: { username: string; password: string }): Observable<any> {
+    debugger;
+    return this.http.post<any>(this.loginUrl, loginData).pipe(
+      catchError(error => {
+        debugger;
+        console.error('Error occurred:', error);
+        return throwError(() => new Error('An error occurred while logging in'));
+      })
+    );
+  }
 
   getLaptops() {
     return this.http.get<any[]>('/api/laptops');

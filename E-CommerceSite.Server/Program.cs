@@ -1,13 +1,13 @@
 using E_CommerceSite.Server.Controllers;
-using E_CommerceSite.Server.Data.E_CommerceSite.Server.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using E_CommerceSite.Server.Data.E_CommerceSite.Server.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -23,9 +23,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ecommercesiteforzubairtraders123456789")) 
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ecommercesiteforzubairtraders123456789"))
         };
     });
+
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        policyBuilder => policyBuilder.WithOrigins("http://localhost:4200") 
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod());
+});
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
@@ -34,8 +43,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseDefaultFiles();
-app.UseStaticFiles();
+// Configure the HTTP request pipeline.
 
 if (app.Environment.IsDevelopment())
 {
@@ -45,8 +53,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
+app.UseCors("AllowAllOrigins");
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
