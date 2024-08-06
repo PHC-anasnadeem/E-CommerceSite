@@ -5,9 +5,12 @@ import { DashboardComponent } from './admin-dashboard/dashboard/dashboard.compon
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
+
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+
   ],
   imports: [
     CommonModule,

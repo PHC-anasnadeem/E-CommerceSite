@@ -14,12 +14,13 @@ export class DashboardComponent implements OnInit {
   selectedCategory: string = '';
   productForm: FormGroup;
   selectedFile: File | null = null;
+  isImageSelected: boolean = false;
 
   constructor(private fb: FormBuilder, private productService: ProductService, private http: HttpClient, private router: Router) { 
     this.productForm = this.fb.group({
       productName: ['', Validators.required],
-      price: [0, Validators.required],
-      discount: [0],
+      price: [null, Validators.required],
+      discount: [null],
       discountedPrice: [{ value: 0, disabled: true }], 
       description: ['', Validators.required],
     });
@@ -42,37 +43,37 @@ export class DashboardComponent implements OnInit {
     this.productForm.get('discountedPrice')?.setValue(discountedPrice, { emitEvent: false });
   }
 
-  onImageSelected(event: any) {
-    this.selectedFile = event.target.files[0];
+  onImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      this.isImageSelected = true; 
+    } else {
+      this.selectedFile = null;
+      this.isImageSelected = false;
+    }
   }
 
-  onSubmit() {
-    if (this.productForm.valid) {
-      const productData = this.productForm.value;
-      console.log('Product Data:', productData);
+  onSubmit(): void {
 
-  
+    if (this.productForm.valid && this.selectedFile) {
+      debugger;
       const formData = new FormData();
-      formData.append('productName', productData.productName);
-      formData.append('price', productData.price);
-      formData.append('discount', productData.discount);
-      formData.append('description', productData.description);
-      if (this.selectedFile) {
-        formData.append('image', this.selectedFile);
-      }
+      formData.append('productName', this.productForm.get('productName')?.value);
+      formData.append('price', this.productForm.get('price')?.value);
+      formData.append('discount', this.productForm.get('discount')?.value);
+      formData.append('description', this.productForm.get('description')?.value);
+      formData.append('image', this.selectedFile);
 
       this.productService.addProduct(formData).subscribe(
         (response: any) => {
           debugger;
-          console.log('Form submitted successfully!', response);
-
           Swal.fire({
             icon: 'success',
             title: 'Added Successful',
-            text: 'You have successfully Added!',
+            text: 'You have successfully added the product!',
             confirmButtonText: 'OK'
           }).then(() => {
-
             this.router.navigate(['/home']);
           });
 
@@ -85,11 +86,19 @@ export class DashboardComponent implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Failed',
-            text: 'Product Did not Added.',
+            text: 'Product could not be added.',
             confirmButtonText: 'Try Again'
           });
         }
       );
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Incomplete Form',
+        text: 'Please fill out all required fields and attach an image.',
+        confirmButtonText: 'OK'
+      });
     }
   }
+
 }

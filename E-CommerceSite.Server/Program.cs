@@ -1,10 +1,10 @@
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using E_CommerceSite.Server.Data;
 using E_CommerceSite.Server.Controllers;
+using Microsoft.AspNetCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,8 +31,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // Add CORS policy
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins",
-        policyBuilder => policyBuilder.WithOrigins("http://localhost:4200") 
+    options.AddPolicy("AllowSpecificOrigin",
+        policyBuilder => policyBuilder.WithOrigins("http://localhost:4200")
                                       .AllowAnyHeader()
                                       .AllowAnyMethod());
 });
@@ -51,18 +51,41 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    // In production, use the generic error handling middleware
+    app.UseExceptionHandler(errorApp =>
+    {
+        errorApp.Run(async context =>
+        {
+            context.Response.StatusCode = 500;
+            context.Response.ContentType = "application/json";
 
-app.UseCors("AllowAllOrigins");
+            var error = context.Features.Get<IExceptionHandlerFeature>();
+            if (error != null)
+            {
+                await context.Response.WriteAsync(new
+                {
+                    StatusCode = context.Response.StatusCode,
+                    Message = "An unexpected error occurred!",
+                    Detailed = error.Error.Message
+                }.ToString());
+            }
+        });
+    });
+}
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
 
+app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseRouting();
 
 app.MapControllers();
 

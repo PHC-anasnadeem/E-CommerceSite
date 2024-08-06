@@ -1,3 +1,5 @@
+
+
 <div class="admin-dashboard" style="margin-top: 5%; font-family: 'Times New Roman', Times, serif; font-size: 20px;">
   <h1>Admin Dashboard</h1>
 
@@ -22,21 +24,22 @@
       </div>
       <div class="form-group">
         <label for="price">Price:</label>
-        <input id="price" formControlName="price" type="text" required />
+        <input id="price" formControlName="price" type="text" step="0.01" placeholder="0" min="0" required />
       </div>
       <div class="form-group">
         <label for="discount">Discount (%):</label>
-        <input id="discount" formControlName="discount" type="text" />
+        <input id="discount" formControlName="discount" type="text" step="0.01" placeholder="0" min="0" />
       </div>
       <div class="form-group">
         <label for="description">Description:</label>
-        <textarea id="description"></textarea>
+        <textarea id="description" formControlName="description"></textarea>
       </div>
       <div class="form-group">
         <label for="image">Attach Image:</label>
         <input id="image" type="file" (change)="onImageSelected($event)" />
       </div>
-      <button type="submit" [disabled]="!productForm.valid">Submit</button>
+      <button type="submit" [disabled]="!productForm.valid || !isImageSelected">Submit</button>
     </form>
   </div>
+
 </div>
