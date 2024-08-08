@@ -50,7 +50,7 @@ namespace E_CommerceSite.Server.Controllers
 
 
 
-        [HttpPost("addProduct")]
+        [HttpPost("AddProduct")]
         public async Task<IActionResult> AddProduct([FromForm] ProductDTO productDTO)
         {
             if (ModelState.IsValid)

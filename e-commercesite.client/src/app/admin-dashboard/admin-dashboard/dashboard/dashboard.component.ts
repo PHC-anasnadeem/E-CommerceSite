@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../../../product.service';
 import Swal from 'sweetalert2';
@@ -12,72 +11,68 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   selectedCategory: string = '';
-  productForm: FormGroup;
   selectedFile: File | null = null;
   isImageSelected: boolean = false;
+  public model: any = {};
+  public modelMain: any = {};
+  files: any[] = [];
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private http: HttpClient, private router: Router) { 
-    this.productForm = this.fb.group({
-      productName: ['', Validators.required],
-      price: [null, Validators.required],
-      discount: [null],
-      discountedPrice: [{ value: 0, disabled: true }], 
-      description: ['', Validators.required],
-    });
-
-    // Subscribe to changes in price and discount to recalculate discounted price
-    this.productForm.get('price')?.valueChanges.subscribe(() => this.calculateDiscountedPrice());
-    this.productForm.get('discount')?.valueChanges.subscribe(() => this.calculateDiscountedPrice());
-  }
+  constructor(private productService: ProductService, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void { }
 
   onCategoryChange() {
-
-  }
-
-  calculateDiscountedPrice() {
-    const price = this.productForm.get('price')?.value || 0;
-    const discount = this.productForm.get('discount')?.value || 0;
-    const discountedPrice = price - (price * (discount / 100));
-    this.productForm.get('discountedPrice')?.setValue(discountedPrice, { emitEvent: false });
+    // Handle category change
   }
 
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
-      this.isImageSelected = true; 
+      this.isImageSelected = true;
     } else {
       this.selectedFile = null;
       this.isImageSelected = false;
     }
   }
 
-  onSubmit(): void {
 
-    if (this.productForm.valid && this.selectedFile) {
-      debugger;
+  onSubmit(form: any): void {
+    debugger;
+    if (form.valid && this.selectedFile) {
+
+      //this.modelMain.ProductName = this.model.productName;
+      //this.modelMain.Price = this.model.price;
+      //this.modelMain.Discount = this.model.discount;
+      //this.modelMain.Description = this.model.description;
+      //this.modelMain.selectedFile = this.selectedFile;
+
+      // Create FormData object
       const formData = new FormData();
-      formData.append('productName', this.productForm.get('productName')?.value);
-      formData.append('price', this.productForm.get('price')?.value);
-      formData.append('discount', this.productForm.get('discount')?.value);
-      formData.append('description', this.productForm.get('description')?.value);
-      formData.append('image', this.selectedFile);
+      formData.append("ProductName", this.model.productName || '');
+      formData.append("Price", this.model.price || '0');
+      formData.append("Discount", this.model.discount || '0');
+      formData.append("Description", this.model.description || '');
+      formData.append('Image', this.selectedFile || new Blob());
+ 
+
+      //var formData = new FormData();
+      //formData.append("data", JSON.stringify(this.modelMain));
+      //formData.append('image', this.selectedFile);
 
       this.productService.addProduct(formData).subscribe(
         (response: any) => {
           debugger;
           Swal.fire({
             icon: 'success',
-            title: 'Added Successful',
+            title: 'Added Successfully',
             text: 'You have successfully added the product!',
             confirmButtonText: 'OK'
           }).then(() => {
             this.router.navigate(['/home']);
           });
 
-          this.productForm.reset();
+          form.reset();
           this.selectedFile = null;
         },
         (error: any) => {
@@ -100,5 +95,4 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
-
 }

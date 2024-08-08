@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "devextreme": "^24.1.4",
+    "devextreme-angular": "^24.1.4",
     "sweetalert2": "^11.12.3",
     "swiper": "^11.1.8"
   }

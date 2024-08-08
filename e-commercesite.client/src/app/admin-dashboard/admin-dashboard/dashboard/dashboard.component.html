@@ -1,10 +1,8 @@
-
-
 <div class="admin-dashboard" style="margin-top: 5%; font-family: 'Times New Roman', Times, serif; font-size: 20px;">
   <h1>Admin Dashboard</h1>
 
   <!-- Category Selection -->
-  <div class="category-selection " style="margin-top: 5%; font-family: 'Times New Roman', Times, serif; font-size: 20px;">
+  <div class="category-selection" style="margin-top: 5%; font-family: 'Times New Roman', Times, serif; font-size: 20px;">
     <label for="category">Select Category:</label>
     <select id="category" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
       <option value="">--Select--</option>
@@ -17,29 +15,33 @@
   <!-- Product Form -->
   <div class="product-form" *ngIf="selectedCategory">
     <h2>Add Product Details</h2>
-    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <form #uploadDocuments="ngForm" (ngSubmit)="onSubmit(uploadDocuments)">
       <div class="form-group">
         <label for="productName">Product Name:</label>
-        <input id="productName" formControlName="productName" type="text" required />
+        <input placeholder="Product Name" id="productName" name="productName" [(ngModel)]="model.productName" required />
       </div>
       <div class="form-group">
         <label for="price">Price:</label>
-        <input id="price" formControlName="price" type="text" step="0.01" placeholder="0" min="0" required />
+        <input placeholder="0" id="price" name="price" [(ngModel)]="model.price" required />
       </div>
       <div class="form-group">
         <label for="discount">Discount (%):</label>
-        <input id="discount" formControlName="discount" type="text" step="0.01" placeholder="0" min="0" />
+        <input placeholder="0" id="discount" name="discount" [(ngModel)]="model.discount" />
       </div>
       <div class="form-group">
         <label for="description">Description:</label>
-        <textarea id="description" formControlName="description"></textarea>
+        <textarea id="description" name="description" [(ngModel)]="model.description"></textarea>
       </div>
       <div class="form-group">
         <label for="image">Attach Image:</label>
         <input id="image" type="file" (change)="onImageSelected($event)" />
       </div>
-      <button type="submit" [disabled]="!productForm.valid || !isImageSelected">Submit</button>
+
+      <button class="btn btn-success btn-md margin-top-20 margin-right-5px pull-right"
+              type="submit"
+              [disabled]="!uploadDocuments.valid || !isImageSelected">
+        Submit
+      </button>
     </form>
   </div>
-
 </div>

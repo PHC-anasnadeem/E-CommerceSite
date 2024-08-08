@@ -29,12 +29,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // Add CORS policy
+// Add CORS policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        policyBuilder => policyBuilder.WithOrigins("http://localhost:4200")
-                                      .AllowAnyHeader()
-                                      .AllowAnyMethod());
+        policyBuilder => policyBuilder
+            .WithOrigins("https://127.0.0.1:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials());
 });
 
 builder.Services.AddScoped<IAuthService, AuthService>();

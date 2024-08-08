@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { tokenInterceptor } from './Interceptor/token.interceptor';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 
@@ -37,7 +38,8 @@ import { CommonModule } from '@angular/common';
       provide: HTTP_INTERCEPTORS,
       useClass: tokenInterceptor, 
       multi: true
-    }
+    },
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

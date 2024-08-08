@@ -10,7 +10,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 export class ProductService {
 
   private loginUrl = 'https://localhost:7094/api/values/login';
-  private apiUrl = 'https://localhost:7094/api/values/addProduct';
+  private apiUrl = 'https://localhost:7094/api/values/AddProduct';
 
   constructor(private http: HttpClient) { }
 
@@ -47,10 +47,20 @@ export class ProductService {
     return this.http.get<any[]>('/api/accessories');
   }
 
-  addProduct(formData: FormData): Observable<any> {
+  addProduct(formData: FormData): Observable<any>
+  //{
+  //  debugger;
+  //  return this.http.post(`${this.apiUrl}/products`, model
+  //  );
+  //}
+  {
     debugger;
-    return this.http.post(`${this.apiUrl}/products`, formData);
-  }
+    const url = `${this.apiUrl}`;
+    return this.http.post<any>(url, formData).pipe(
+    map(res => res),
+    catchError(this.handleError)
+  );
+}
 
   
 }
