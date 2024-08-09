@@ -5,6 +5,7 @@ using System.Text;
 using E_CommerceSite.Server.Data;
 using E_CommerceSite.Server.Controllers;
 using Microsoft.AspNetCore.Diagnostics;
+using E_CommerceSite.Server.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +45,10 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Email registrations service
+builder.Services.AddScoped<EmailUtility>(sp => new EmailUtility("mail.phc.org.pk", 587, "anas.nadeem@phc.org.pk", "Bluemoon77"));
+builder.Services.AddScoped<EmailService>();
 
 var app = builder.Build();
 

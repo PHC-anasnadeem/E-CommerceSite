@@ -20,12 +20,14 @@ namespace E_CommerceSite.Server.Controllers
         private readonly IAuthService _authService;
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _env;
+        private readonly EmailService _emailService;
 
-        public ValuesController(IAuthService authService, ApplicationDbContext context, IWebHostEnvironment env)
+        public ValuesController(IAuthService authService, ApplicationDbContext context, IWebHostEnvironment env, EmailService emailService)
         {
             _authService = authService;
             _env = env ?? throw new ArgumentNullException(nameof(env));
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _emailService = emailService;
         }
 
         [HttpPost("Login")]
@@ -37,6 +39,7 @@ namespace E_CommerceSite.Server.Controllers
 
                 if (result.IsSuccess)
                 {
+                    await _emailService.SendTestEmailAsync();
                     return Ok(new { Token = result.Token });
                 }
                 else
@@ -103,6 +106,9 @@ namespace E_CommerceSite.Server.Controllers
 
             return BadRequest(ModelState);
         }
+
+
+  
 
 
 
