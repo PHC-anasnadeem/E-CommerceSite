@@ -12,13 +12,12 @@ export class HomeComponent implements OnInit {
   laptops: any[] = [];
   lcds: any[] = [];
   accessories: any[] = [];
+  products: any[] = [];
 
   constructor(private http: HttpClient, private productService: ProductService) { }
 
   ngOnInit() {
-    this.loadLaptops();
-    this.loadLcds();
-    this.loadAccessories();
+    this.getCategoryData();
   }
 
   private loadLaptops() {
@@ -59,6 +58,19 @@ export class HomeComponent implements OnInit {
         },
       });
     }, 100);
+  }
+
+  getCategoryData(): void {
+    debugger;
+    this.productService.getCategoryData().subscribe(
+      data => {
+        debugger;
+        this.products = data;
+      },
+      error => {
+        console.error('Error fetching data', error);
+      }
+    );
   }
 
 }

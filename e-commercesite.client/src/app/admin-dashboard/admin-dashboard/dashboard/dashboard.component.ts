@@ -41,24 +41,15 @@ export class DashboardComponent implements OnInit {
     debugger;
     if (form.valid && this.selectedFile) {
 
-      //this.modelMain.ProductName = this.model.productName;
-      //this.modelMain.Price = this.model.price;
-      //this.modelMain.Discount = this.model.discount;
-      //this.modelMain.Description = this.model.description;
-      //this.modelMain.selectedFile = this.selectedFile;
-
       // Create FormData object
       const formData = new FormData();
+      formData.append("selectedCategory", this.selectedCategory || '');
       formData.append("ProductName", this.model.productName || '');
       formData.append("Price", this.model.price || '0');
       formData.append("Discount", this.model.discount || '0');
       formData.append("Description", this.model.description || '');
       formData.append('Image', this.selectedFile || new Blob());
- 
 
-      //var formData = new FormData();
-      //formData.append("data", JSON.stringify(this.modelMain));
-      //formData.append('image', this.selectedFile);
 
       this.productService.addProduct(formData).subscribe(
         (response: any) => {
@@ -87,7 +78,7 @@ export class DashboardComponent implements OnInit {
         }
       );
     } else {
-      Swal.fire({
+      Swal.fire({ 
         icon: 'warning',
         title: 'Incomplete Form',
         text: 'Please fill out all required fields and attach an image.',

@@ -30,6 +30,7 @@ namespace E_CommerceSite.Server.Controllers
             _emailService = emailService;
         }
 
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<IActionResult> Login(string username, string password)
         {
@@ -88,6 +89,7 @@ namespace E_CommerceSite.Server.Controllers
                 // Create a new product instance
                 var product = new Product
                 {
+                    selectedCategory = productDTO.selectedCategory,
                     ProductName = productDTO.ProductName,
                     Price = productDTO.Price,
                     Discount = productDTO.Discount,
@@ -108,7 +110,24 @@ namespace E_CommerceSite.Server.Controllers
         }
 
 
-  
+
+        [HttpGet("GetCategories")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetCategories()
+        {
+            try
+            {
+                var products = await _context.Products.ToListAsync();
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+
+
+
 
 
 

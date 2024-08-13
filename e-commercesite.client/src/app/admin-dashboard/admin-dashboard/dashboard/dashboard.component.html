@@ -1,47 +1,56 @@
-<div class="admin-dashboard" style="margin-top: 5%; font-family: 'Times New Roman', Times, serif; font-size: 20px;">
-  <h1>Admin Dashboard</h1>
 
-  <!-- Category Selection -->
-  <div class="category-selection" style="margin-top: 5%; font-family: 'Times New Roman', Times, serif; font-size: 20px;">
-    <label for="category">Select Category:</label>
-    <select id="category" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
-      <option value="">--Select--</option>
-      <option value="lcd">LCD</option>
-      <option value="laptop">Laptop</option>
-      <option value="accessories">Accessories</option>
-    </select>
+  <header>
+    <div class="header">
+      <a href="index.html">
+        <img src="../assets/images/logo.png" alt="logo" class="img-fluid mb-3 logo">
+      </a>
+      <h1 class="dashboard-title" style="font-family: 'Times New Roman'">Admin Dashboard</h1>
+      <hr />
+    </div>
+  </header>
+  <div class="admin-dashboard" style="margin-top: 5%; font-family: 'Times New Roman', Times, serif; font-size: 20px;">
+    <img src="assets/images/laptoopppadmin.png" alt="Admin Image"  style="width: 100%;"/>
+    <!-- Category Selection -->
+    <div class="category-selection" style="margin-top: 5%; font-family: 'Times New Roman', Times, serif; font-size: 20px;">
+      <label for="category">Select Category:</label>
+      <select id="category" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+        <option value="">--Select--</option>
+        <option value="LCD">LCD</option>
+        <option value="LAPTOP">Laptop</option>
+        <option value="ACCESSORIES">Accessories</option>
+      </select>
+    </div>
+
+    <!-- Product Form -->
+    <div class="product-form" *ngIf="selectedCategory">
+      <h2   style="font-family: 'Times New Roman'">Add Product Details</h2>
+      <form #uploadDocuments="ngForm" (ngSubmit)="onSubmit(uploadDocuments)">
+        <div class="form-group">
+          <label for="productName">Product Name:</label>
+          <input placeholder="Product Name" id="productName" name="productName" [(ngModel)]="model.productName" type="text" required />
+        </div>
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input placeholder="0" id="price" name="price" [(ngModel)]="model.price" type="text" required />
+        </div>
+        <div class="form-group">
+          <label for="discount">Discount (%):</label>
+          <input placeholder="%" id="discount" name="discount" type="text" [(ngModel)]="model.discount" />
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" [(ngModel)]="model.description"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="image">Attach Image:</label>
+          <input id="image" type="file" (change)="onImageSelected($event)" />
+        </div>
+
+        <button class="btn btn-success btn-md margin-top-20 margin-right-5px pull-right"
+                type="submit"
+                [disabled]="!uploadDocuments.valid || !isImageSelected">
+          Submit
+        </button>
+      </form>
+    </div>
   </div>
-
-  <!-- Product Form -->
-  <div class="product-form" *ngIf="selectedCategory">
-    <h2>Add Product Details</h2>
-    <form #uploadDocuments="ngForm" (ngSubmit)="onSubmit(uploadDocuments)">
-      <div class="form-group">
-        <label for="productName">Product Name:</label>
-        <input placeholder="Product Name" id="productName" name="productName" [(ngModel)]="model.productName" required />
-      </div>
-      <div class="form-group">
-        <label for="price">Price:</label>
-        <input placeholder="0" id="price" name="price" [(ngModel)]="model.price" required />
-      </div>
-      <div class="form-group">
-        <label for="discount">Discount (%):</label>
-        <input placeholder="0" id="discount" name="discount" [(ngModel)]="model.discount" />
-      </div>
-      <div class="form-group">
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" [(ngModel)]="model.description"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="image">Attach Image:</label>
-        <input id="image" type="file" (change)="onImageSelected($event)" />
-      </div>
-
-      <button class="btn btn-success btn-md margin-top-20 margin-right-5px pull-right"
-              type="submit"
-              [disabled]="!uploadDocuments.valid || !isImageSelected">
-        Submit
-      </button>
-    </form>
-  </div>
-</div>

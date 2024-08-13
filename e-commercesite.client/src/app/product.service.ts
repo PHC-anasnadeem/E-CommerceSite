@@ -8,9 +8,11 @@ import { catchError, tap, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
+ 
 
-  private loginUrl = 'https://localhost:7094/api/values/login';
-  private apiUrl = 'https://localhost:7094/api/values/AddProduct';
+  private loginUrl = 'http://localhost:5260/api/values/login';
+  private apiUrl = 'http://localhost:5260/api/values/AddProduct';
+  private categoryUrl = 'http://localhost:5260/api/values/GetCategories';
 
   constructor(private http: HttpClient) { }
 
@@ -48,19 +50,17 @@ export class ProductService {
   }
 
   addProduct(formData: FormData): Observable<any>
-  //{
-  //  debugger;
-  //  return this.http.post(`${this.apiUrl}/products`, model
-  //  );
-  //}
   {
-    debugger;
     const url = `${this.apiUrl}`;
     return this.http.post<any>(url, formData).pipe(
     map(res => res),
     catchError(this.handleError)
   );
-}
+  }
+
+  getCategoryData(): Observable<any[]> {
+    return this.http.get<any[]>(this.categoryUrl);
+  }
 
   
 }

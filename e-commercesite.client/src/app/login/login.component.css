@@ -1,116 +1,133 @@
-.outer {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Aligns the form towards the top */
-  padding-top: 50px; /* Adds space from the top */
-  height: 100vh;
-  background-color: #fff; /* Set background color to white */
-  font-family: 'Arial', sans-serif;
-}
-/* Panel Styling */
-.panel {
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  max-width: 400px;
-  width: 100%;
-  margin-top: 20px; /* Slightly moves the form up */
-}
-
-.panel-heading {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-  .panel-heading h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-  }
-/* Input Field Styling */
-.input-field {
-  display: flex;
   align-items: center;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 8px; /* Reduced padding for smaller input fields */
+  height: 100%;
+  background-color: #2b2b2b;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+h2 {
+  text-align: left;
+  font-weight: bold;
+}
+
+.name{
+
+  text-align: left;
+  font-weight: bold;
+
+}
+
+.login-container {
+  display: flex;
+  width: 100%;
+  max-width: 800px; /* Adjust the max width as needed */
+  height: 400px; /* Adjust height as needed */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+}
+
+.image-container {
+  flex: 1;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+  }
+
+.form-container {
+  flex: 1;
+  padding: 20px;
+  color: black;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h2 {
+  font-size: 20px; /* Smaller font size */
   margin-bottom: 15px;
-  position: relative;
 }
 
-  .input-field .fa {
-    margin-right: 8px; /* Adjusted for smaller input fields */
+.input-group {
+  margin-bottom: 15px;
+}
+
+  .input-group label {
+    display: block;
+    font-size: 12px; /* Smaller font size */
+    margin-bottom: 5px;
   }
 
-  .input-field.error {
-    border-color: #C90909;
+  .input-group input {
+    width: 100%;
+    padding: 8px; /* Reduced padding */
+    border: 1px solid #ccc; /* Added border for simplicity */
+    border-radius: 4px; /* Smaller border-radius */
+    background-color: white;
+    color: black;
   }
 
-  .input-field .error-message {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #C90909;
-    font-size: 0.75rem;
-    white-space: nowrap;
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+  .options label {
+    font-size: 12px; /* Smaller font size */
   }
 
-input[type='text'],
-input[type='password'] {
-  border: none;
-  outline: none;
-  box-shadow: none;
+.login-btn {
   width: 100%;
-  font-size: 0.9rem; /* Reduced font size */
-  color: #333;
-}
-/* Button Styling */
-.btn {
-  background-color: #6E6EF6;
+  padding: 10px; /* Reduced padding */
+  border: none;
+  border-radius: 4px; /* Smaller border-radius */
+  background-color: #007bff;
   color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 15px;
+  font-size: 14px; /* Smaller font size */
   cursor: pointer;
-  width: 100%;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 
-  .btn:hover {
-    background-color: #5757D1;
-  }
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  .panel {
-    padding: 15px;
-    max-width: 90%;
+  .login-btn:hover {
+    background-color: #0056b3;
   }
 
-  .btn {
-    font-size: 0.9rem;
-    padding: 8px;
-  }
+.register-text {
+  text-align: center;
+  color: #ccc;
 }
 
-@media (max-width: 480px) {
-  .panel {
-    margin-top: 30px; /* Adjusted for smaller screens */
+  .register-text a {
+    color: #e74c3c;
+    text-decoration: none;
   }
 
-  .panel-heading h3 {
-    font-size: 1.2rem;
-  }
-
-  .input-field {
-    padding: 20px; /* Further reduced for smaller screens */
-  }
-
-  input[type='text'],
-  input[type='password'] {
-    font-size: 0.85rem; /* Reduced font size on smaller screens */
-  }
-}
+    .register-text a:hover {
+      text-decoration: underline;
+    }
