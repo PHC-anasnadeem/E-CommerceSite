@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   lcds: any[] = [];
   accessories: any[] = [];
   products: any[] = [];
+  errorMessage: string | null = null; 
 
   constructor(private http: HttpClient, private productService: ProductService) { }
 
@@ -65,6 +66,10 @@ export class HomeComponent implements OnInit {
     this.productService.getCategoryData().subscribe(
       data => {
         debugger;
+        this.laptops = data.filter(product => product.selectcategory == 'Laptop');
+        this.lcds = data.filter(product => product.selectedCategory === 'LCD');
+        this.accessories = data.filter(product => product.selectedCategory === 'Accessory');
+        this.errorMessage = null; 
         this.products = data;
       },
       error => {

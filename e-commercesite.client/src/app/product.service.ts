@@ -10,9 +10,9 @@ import { catchError, tap, map } from 'rxjs/operators';
 export class ProductService {
  
 
-  private loginUrl = 'http://localhost:5260/api/values/login';
-  private apiUrl = 'http://localhost:5260/api/values/AddProduct';
-  private categoryUrl = 'http://localhost:5260/api/values/GetCategories';
+  private loginUrl = 'https://localhost:7094/api/values/login';
+  private apiUrl = 'https://localhost:7094/api/values/AddProduct';
+  private categoryUrl = 'https://localhost:7094/api/values/GetCategories';
 
   constructor(private http: HttpClient) { }
 

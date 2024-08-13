@@ -187,12 +187,17 @@
               <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
             </div>
           </div>
-          <div class="swiper product-laptop-swiper">
+
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+
+          <div *ngIf="!errorMessage && laptops.length > 0" class="swiper product-laptop-swiper">
             <div class="swiper-wrapper">
               <div *ngFor="let laptop of laptops" class="swiper-slide">
                 <div class="product-card position-relative">
                   <div class="image-holder">
-                    <img [src]="laptop.image" alt="{{ laptop.name }}" class="img-fluid">
+                    <img [src]="laptop.ImagePath" alt="{{ laptop.ProductName }}" class="img-fluid">
                   </div>
                   <div class="cart-concern position-absolute">
                     <div class="cart-button d-flex">
@@ -206,20 +211,24 @@
                   </div>
                   <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                     <h3 class="card-title text-uppercase">
-                      <a href="#">{{ laptop.name }}</a>
+                      <a href="#">{{ laptop.ProductName }}</a>
                     </h3>
-                    <span class="item-price text-primary">{{ laptop.price | currency }}</span>
+                    <span class="item-price text-primary">{{ laptop.Price | currency }}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Add navigation buttons if needed -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
+          </div>
+
+          <div *ngIf="!errorMessage && laptops.length === 0">
+            No laptops found.
           </div>
         </div>
       </div>
     </section>
+
 
     <section id="lcds" class="product-store padding-large position-relative">
       <div class="container">
@@ -230,12 +239,17 @@
               <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
             </div>
           </div>
-          <div class="swiper product-lcd-swiper">
+
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+
+          <div *ngIf="!errorMessage && lcds.length > 0" class="swiper product-lcd-swiper">
             <div class="swiper-wrapper">
               <div *ngFor="let lcd of lcds" class="swiper-slide">
                 <div class="product-card position-relative">
                   <div class="image-holder">
-                    <img [src]="lcd.image" alt="{{ lcd.name }}" class="img-fluid">
+                    <img [src]="lcd.ImagePath" alt="{{ lcd.ProductName }}" class="img-fluid">
                   </div>
                   <div class="cart-concern position-absolute">
                     <div class="cart-button d-flex">
@@ -249,20 +263,25 @@
                   </div>
                   <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                     <h3 class="card-title text-uppercase">
-                      <a href="#">{{ lcd.name }}</a>
+                      <a href="#">{{ lcd.ProductName }}</a>
                     </h3>
-                    <span class="item-price text-primary">{{ lcd.price | currency }}</span>
+                    <span class="item-price text-primary">{{ lcd.Price | currency }}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Add navigation buttons if needed -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
+          </div>
+
+          <div *ngIf="!errorMessage && lcds.length === 0">
+            No LCDs found.
           </div>
         </div>
       </div>
     </section>
+
+
 
     <section id="accessories" class="product-store padding-large position-relative">
       <div class="container">
@@ -273,12 +292,17 @@
               <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
             </div>
           </div>
-          <div class="swiper product-accessory-swiper">
+
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+
+          <div *ngIf="!errorMessage && accessories.length > 0" class="swiper product-accessory-swiper">
             <div class="swiper-wrapper">
               <div *ngFor="let accessory of accessories" class="swiper-slide">
                 <div class="product-card position-relative">
                   <div class="image-holder">
-                    <img [src]="accessory.image" alt="{{ accessory.name }}" class="img-fluid">
+                    <img [src]="accessory.ImagePath" alt="{{ accessory.ProductName }}" class="img-fluid">
                   </div>
                   <div class="cart-concern position-absolute">
                     <div class="cart-button d-flex">
@@ -292,20 +316,25 @@
                   </div>
                   <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
                     <h3 class="card-title text-uppercase">
-                      <a href="#">{{ accessory.name }}</a>
+                      <a href="#">{{ accessory.ProductName }}</a>
                     </h3>
-                    <span class="item-price text-primary">{{ accessory.price | currency }}</span>
+                    <span class="item-price text-primary">{{ accessory.Price | currency }}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Add navigation buttons if needed -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
+          </div>
+
+          <div *ngIf="!errorMessage && accessories.length === 0">
+            No accessories found.
           </div>
         </div>
       </div>
     </section>
+
+
 
 
   </main>

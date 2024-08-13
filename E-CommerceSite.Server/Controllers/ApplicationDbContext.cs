@@ -13,19 +13,19 @@
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Product>(entity =>
-            {
-                entity.ToTable("Products"); 
+        //    modelBuilder.Entity<Product>(entity =>
+        //    {
+        //        entity.ToTable("Products"); 
 
-            });
+        //    });
 
             //// Ignore Users table if it already exists
             //modelBuilder.Ignore<User>();
 
-        }
+        //}
     }
 }
