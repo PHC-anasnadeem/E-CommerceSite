@@ -120,6 +120,8 @@
   <app-header></app-header>
 
 
+
+
   <!-- Main Content -->
   <section id="billboard" class="position-relative  bg-light-blue">
     <!-- Swiper Container -->
@@ -176,170 +178,65 @@
   </section>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-
-  <main>
-    <section id="laptops" class="product-store padding-large position-relative">
+ 
+    <main>
       <div class="container">
-        <div class="row">
-          <div class="display-header d-flex justify-content-between pb-3">
-            <h2 class="display-7 text-dark text-uppercase">Laptops</h2>
-            <div class="btn-right">
-              <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+        <!-- Laptops Section -->
+        <h1>Laptops</h1>
+        <div *ngIf="laptops.length; else noLaptops">
+          <div class="product-grid">
+            <div *ngFor="let laptop of laptops" class="product">
+              <img [src]="laptop.imagePath" alt="{{laptop.imagePath}}" />
+              <h2>{{ laptop.productName }}</h2>
+
+              <p>Price: {{ laptop.price | currency:'PKR':true }}</p>
+              <p>Discounted Price: {{ laptop.discountedPrice | currency:'PKR':true }}</p>
+              <p>Description: {{ laptop.description }}</p>
+              <button (click)="addToCart(laptop)">Add to Cart</button>
             </div>
-          </div>
-
-          <div *ngIf="errorMessage" class="error-message">
-            {{ errorMessage }}
-          </div>
-
-          <div *ngIf="!errorMessage && laptops.length > 0" class="swiper product-laptop-swiper">
-            <div class="swiper-wrapper">
-              <div *ngFor="let laptop of laptops" class="swiper-slide">
-                <div class="product-card position-relative">
-                  <div class="image-holder">
-                    <img [src]="laptop.ImagePath" alt="{{ laptop.ProductName }}" class="img-fluid">
-                  </div>
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">
-                        Add to Cart
-                        <svg class="cart-outline">
-                          <use xlink:href="#cart-outline"></use>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="#">{{ laptop.ProductName }}</a>
-                    </h3>
-                    <span class="item-price text-primary">{{ laptop.Price | currency }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-          </div>
-
-          <div *ngIf="!errorMessage && laptops.length === 0">
-            No laptops found.
           </div>
         </div>
-      </div>
-    </section>
+        <ng-template #noLaptops>
+          <p>No laptops available.</p>
+        </ng-template>
 
-
-    <section id="lcds" class="product-store padding-large position-relative">
-      <div class="container">
-        <div class="row">
-          <div class="display-header d-flex justify-content-between pb-3">
-            <h2 class="display-7 text-dark text-uppercase">LCDs</h2>
-            <div class="btn-right">
-              <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+        <!-- LCDs Section -->
+        <h1>LCDs</h1>
+        <div *ngIf="lcds.length; else noLcds">
+          <div class="product-grid">
+            <div *ngFor="let lcd of lcds" class="product">
+              <img [src]="lcd.imagePath" alt="{{lcd.productName}}" />
+              <h2>{{ lcd.productName }}</h2>
+              <p>Price: {{ lcd.price | currency:'PKR':true }}</p>
+              <p>Discounted Price: {{ lcd.discountedPrice | currency:'PKR':true }}</p>
+              <p>Description: {{ lcd.description }}</p>
+              <button (click)="addToCart(lcd)">Add to Cart</button>
             </div>
-          </div>
-
-          <div *ngIf="errorMessage" class="error-message">
-            {{ errorMessage }}
-          </div>
-
-          <div *ngIf="!errorMessage && lcds.length > 0" class="swiper product-lcd-swiper">
-            <div class="swiper-wrapper">
-              <div *ngFor="let lcd of lcds" class="swiper-slide">
-                <div class="product-card position-relative">
-                  <div class="image-holder">
-                    <img [src]="lcd.ImagePath" alt="{{ lcd.ProductName }}" class="img-fluid">
-                  </div>
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">
-                        Add to Cart
-                        <svg class="cart-outline">
-                          <use xlink:href="#cart-outline"></use>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="#">{{ lcd.ProductName }}</a>
-                    </h3>
-                    <span class="item-price text-primary">{{ lcd.Price | currency }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-          </div>
-
-          <div *ngIf="!errorMessage && lcds.length === 0">
-            No LCDs found.
           </div>
         </div>
-      </div>
-    </section>
+        <ng-template #noLcds>
+          <p>No LCDs available.</p>
+        </ng-template>
 
-
-
-    <section id="accessories" class="product-store padding-large position-relative">
-      <div class="container">
-        <div class="row">
-          <div class="display-header d-flex justify-content-between pb-3">
-            <h2 class="display-7 text-dark text-uppercase">Accessories</h2>
-            <div class="btn-right">
-              <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+        <!-- Accessories Section -->
+        <h1>Accessories</h1>
+        <div *ngIf="accessories.length; else noAccessories">
+          <div class="product-grid">
+            <div *ngFor="let accessory of accessories" class="product">
+              <img [src]="accessory.imagePath" alt="{{accessory.productName}}" />
+              <h2>{{ accessory.productName }}</h2>
+              <p>Price: {{ accessory.price |currency:'PKR':true }}</p>
+              <p>Discounted Price: {{ accessory.discountedPrice | currency:'PKR':true }}</p>
+              <p>Description: {{ accessory.description }}</p>
+              <button (click)="addToCart(accessory)">Add to Cart</button>
             </div>
-          </div>
-
-          <div *ngIf="errorMessage" class="error-message">
-            {{ errorMessage }}
-          </div>
-
-          <div *ngIf="!errorMessage && accessories.length > 0" class="swiper product-accessory-swiper">
-            <div class="swiper-wrapper">
-              <div *ngFor="let accessory of accessories" class="swiper-slide">
-                <div class="product-card position-relative">
-                  <div class="image-holder">
-                    <img [src]="accessory.ImagePath" alt="{{ accessory.ProductName }}" class="img-fluid">
-                  </div>
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">
-                        Add to Cart
-                        <svg class="cart-outline">
-                          <use xlink:href="#cart-outline"></use>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="#">{{ accessory.ProductName }}</a>
-                    </h3>
-                    <span class="item-price text-primary">{{ accessory.Price | currency }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-          </div>
-
-          <div *ngIf="!errorMessage && accessories.length === 0">
-            No accessories found.
           </div>
         </div>
+        <ng-template #noAccessories>
+          <p>No accessories available.</p>
+        </ng-template>
       </div>
-    </section>
-
-
-
-
-  </main>
-
-
+    </main>
 
   <footer id="footer" class="bg-white text-light py-5">
     <div class="container">
@@ -493,7 +390,6 @@
         </div>
       </div>
     </div>
-
 
     <!-- Scripts -->
     <script src="js/jquery-1.11.0.min.js"></script>

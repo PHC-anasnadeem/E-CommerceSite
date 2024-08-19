@@ -407,3 +407,6 @@ h2.category-title {
     height: auto;
   }
 }
+.cart {
+  z-index: 100; /* Make sure the cart icon is above other elements */
+}

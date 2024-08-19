@@ -1,5 +1,4 @@
-﻿
-using E_CommerceSite.Server.Data;
+﻿using E_CommerceSite.Server.Data;
 using E_CommerceSite.Server.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -215,4 +214,3 @@ namespace E_CommerceSite.Server.Controllers
         public string Token { get; set; }
     }
 }
-

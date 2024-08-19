@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       debugger;
-      this.productService.Login(this.loginForm.value).subscribe(
+      this.productService.login(this.loginForm.value).subscribe(
         (data: any) => {
           debugger;
           console.log('Login successful:', data);

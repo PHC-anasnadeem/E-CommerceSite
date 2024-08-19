@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
         }
       );
     } else {
-      Swal.fire({ 
+      Swal.fire({
         icon: 'warning',
         title: 'Incomplete Form',
         text: 'Please fill out all required fields and attach an image.',

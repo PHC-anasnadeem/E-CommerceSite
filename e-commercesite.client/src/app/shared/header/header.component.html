@@ -61,12 +61,17 @@
                     </a>
                   </li>
                   <li>
-                    <a href="cart.html">
+                    <a (click)="openCart()">
                       <svg class="cart">
                         <use xlink:href="#cart"></use>
                       </svg>
+                      <span class="cart-count">{{ cartItemCount }}</span>
                     </a>
                   </li>
+
+                  <!-- Conditionally display the cart popup -->
+                  <app-cart *ngIf="showCart" (close)="closeCart()"></app-cart>
+
                 </ul>
               </div>
             </li>

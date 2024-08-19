@@ -12,6 +12,7 @@ import { tokenInterceptor } from './Interceptor/token.interceptor';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -21,7 +22,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    CartComponent
 
   ],
   imports: [

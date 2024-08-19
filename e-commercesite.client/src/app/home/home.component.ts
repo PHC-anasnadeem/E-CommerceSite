@@ -1,81 +1,50 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../product.service';
-import Swiper from 'swiper';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   laptops: any[] = [];
   lcds: any[] = [];
   accessories: any[] = [];
-  products: any[] = [];
-  errorMessage: string | null = null; 
+  errorMessage: string | null = null;
 
-  constructor(private http: HttpClient, private productService: ProductService) { }
+  constructor(private productService: ProductService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getCategoryData();
   }
 
-  private loadLaptops() {
-    this.productService.getLaptops().subscribe((data: any[]) => {
-      this.laptops = data;
-      this.initializeSwiper('.product-laptop-swiper');
-    });
-  }
-
-  private loadLcds() {
-    this.productService.getLcds().subscribe((data: any[]) => {
-      this.lcds = data;
-      this.initializeSwiper('.product-lcd-swiper');
-    });
-  }
-
-  private loadAccessories() {
-    this.productService.getAccessories().subscribe((data: any[]) => {
-      this.accessories = data;
-      this.initializeSwiper('.product-accessory-swiper');
-    });
-  }
-
-  private initializeSwiper(swiperSelector: string) {
-    setTimeout(() => {
-      new Swiper(swiperSelector, {
-        slidesPerView: 4,
-        spaceBetween: 10,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        breakpoints: {
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-          1280: { slidesPerView: 4 },
-        },
-      });
-    }, 100);
-  }
-
   getCategoryData(): void {
-    debugger;
     this.productService.getCategoryData().subscribe(
       data => {
-        debugger;
-        this.laptops = data.filter(product => product.selectcategory == 'Laptop');
+        this.laptops = data.filter(product => product.selectedCategory === 'LAPTOP');
         this.lcds = data.filter(product => product.selectedCategory === 'LCD');
-        this.accessories = data.filter(product => product.selectedCategory === 'Accessory');
-        this.errorMessage = null; 
-        this.products = data;
+        this.accessories = data.filter(product => product.selectedCategory === 'ACCESSORIES');
+        this.errorMessage = null;
       },
       error => {
         console.error('Error fetching data', error);
+        this.errorMessage = 'An error occurred while fetching data.';
       }
     );
   }
+  addToCart(productId: number): void {
+    this.productService.addToCart(productId).subscribe(
+      () => {
+        this.productService.getCart().subscribe(cartItems => {
+          this.productService.updateCartItemCount(cartItems.length);
+        });
+        console.log('Product added to cart:', productId);
+      },
+      error => console.error('Error adding product to cart', error)
+    );
+  }
 
+  removeFromCart(productId: number): void {
+    
+  }
 }
