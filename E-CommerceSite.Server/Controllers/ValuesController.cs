@@ -124,16 +124,77 @@ namespace E_CommerceSite.Server.Controllers
             }
         }
 
+        [HttpPost("AddToCart")]
+        public async Task<IActionResult> AddToCart([FromBody] CartItem cartItem)
+        {
+            if (cartItem == null)
+            {
+                return BadRequest("Invalid cart item");
+            }
 
+            _context.CartItems.Add(cartItem);
+            await _context.SaveChangesAsync();
 
+            return Ok(new { message = "Item added to cart" });
+        }
 
+        [HttpDelete("RemoveFromCart/{id}")]
+        public async Task<IActionResult> RemoveFromCart(int id)
+        {
+            var item = await _context.CartItems.FindAsync(id);
+            if (item == null)
+            {
+                return NotFound("Cart item not found");
+            }
 
+            _context.CartItems.Remove(item);
+            await _context.SaveChangesAsync();
 
+            return Ok(new { message = "Item removed from cart" });
+        }
 
+        [HttpDelete("EmptyCart")]
+        public async Task<IActionResult> EmptyCart()
+        {
+            var items = await _context.CartItems.ToListAsync();
+            _context.CartItems.RemoveRange(items);
+            await _context.SaveChangesAsync();
 
+            return Ok(new { message = "Cart emptied" });
+        }
 
-
+        [HttpGet("GetCart")]
+        public async Task<ActionResult<IEnumerable<CartItem>>> GetCart()
+        {
+            var items = await _context.CartItems.ToListAsync();
+            return Ok(items);
+        }
     }
+
+
+
+    //[HttpPost ("cart")]
+    //public async Task<IActionResult> cart([FromForm] Product cartItem)
+    //{
+    //    if (cartItem == null)
+    //    {
+    //        return BadRequest("Invalid cart item");
+    //    }
+
+    //    _context.CartItems.Add(cartItem);
+    //    await _context.SaveChangesAsync();
+
+    //    return Ok(new { message = "Item added to cart" });
+    //}
+
+
+
+
+
+
+
+
+}
 
     public class AuthService : IAuthService
     {
@@ -213,4 +274,3 @@ namespace E_CommerceSite.Server.Controllers
         public bool IsSuccess { get; set; }
         public string Token { get; set; }
     }
-}

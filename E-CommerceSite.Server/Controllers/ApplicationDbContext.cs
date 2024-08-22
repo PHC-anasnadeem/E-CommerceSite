@@ -12,6 +12,7 @@
 
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
@@ -23,8 +24,8 @@
 
         //    });
 
-            //// Ignore Users table if it already exists
-            //modelBuilder.Ignore<User>();
+        //// Ignore Users table if it already exists
+        //modelBuilder.Ignore<User>();
 
         //}
     }

@@ -11,10 +11,11 @@ export class ProductService {
   private loginUrl = 'http://localhost:5260/api/values/login';
   private apiUrl = 'http://localhost:5260/api/values/AddProduct';
   private categoryUrl = 'http://localhost:5260/api/values/GetCategories';
-  private cartUrl = 'http://localhost:5260/api/cart'; // Endpoint for cart operations
+  private cartUrl = 'http://localhost:5260/api/values/AddToCart'; // Ensure this matches
+  // URL to your cart API endpoint
 
-  private cartItemCountSubject = new BehaviorSubject<number>(0);
-  cartItemCount$: Observable<number> = this.cartItemCountSubject.asObservable();
+  private cartItemCount = new BehaviorSubject<number>(0);
+  cartItemCount$ = this.cartItemCount.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -29,10 +30,8 @@ export class ProductService {
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {
-      // Client-side error
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     console.error(errorMessage);
@@ -70,8 +69,9 @@ export class ProductService {
     );
   }
 
-  addToCart(productId: number): Observable<any> {
-    return this.http.post<any>(`${this.cartUrl}/add`, { productId }).pipe(
+  addToCart(data: any): Observable<any> {
+    debugger;
+    return this.http.post<any>(this.cartUrl, data).pipe(
       catchError(this.handleError)
     );
   }
@@ -83,7 +83,9 @@ export class ProductService {
   }
 
 
-  updateCartItemCount(count: number): void {
-    this.cartItemCountSubject.next(count);
+  updateCartItemCount(count: number) {
+    this.cartItemCount.next(count);
   }
+
+
 }

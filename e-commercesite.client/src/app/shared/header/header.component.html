@@ -19,16 +19,16 @@
         <div class="offcanvas-body">
           <ul id="navbar" class="navbar-nav text-uppercase justify-content-end align-items-center flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link me-4 active" href="#billboard">Home</a>
+              <a class="nav-link me-4 active" href="#billboard" (click)="scrollTo('billboard')">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link me-4" href="#laptops">Laptops</a>
+              <a class="nav-link me-4" href="#laptops" (click)="scrollTo('laptops')">Laptops</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link me-4" href="#lcds">LCDs</a>
+              <a class="nav-link me-4" href="#lcds" (click)="scrollTo('lcds')">LCDs</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link me-4" href="#accessories">Accessories</a>
+              <a class="nav-link me-4" href="#accessories" (click)="scrollTo('accessories')">Accessories</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Pages</a>
@@ -36,7 +36,7 @@
                 <li><a href="about.html" class="dropdown-item">About</a></li>
                 <li><a href="blog.html" class="dropdown-item">Blog</a></li>
                 <li><a href="shop.html" class="dropdown-item">Shop</a></li>
-                <li><a href="cart.html" class="dropdown-item">Cart</a></li>
+                <li><a href="#cart" class="dropdown-item">Cart</a></li>
                 <li><a href="checkout.html" class="dropdown-item">Checkout</a></li>
                 <li><a href="single-post.html" class="dropdown-item">Single Post</a></li>
                 <li><a href="single-product.html" class="dropdown-item">Single Product</a></li>
@@ -61,7 +61,7 @@
                     </a>
                   </li>
                   <li>
-                    <a (click)="openCart()">
+                    <a (click)="openCart()" [routerLink]="['/cart']">
                       <svg class="cart">
                         <use xlink:href="#cart"></use>
                       </svg>

@@ -118,94 +118,137 @@
   </div>
 
   <app-header></app-header>
-
-
-
-
   <!-- Main Content -->
-  <section id="billboard" class="position-relative  bg-light-blue">
-    <!-- Swiper Container -->
-    <div class="swiper main-swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
+  <section id="billboard" class="position-relative bg-light-blue">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <!-- Carousel Slide 1 -->
+        <div class="carousel-item active">
           <div class="container">
             <div class="row d-flex align-items-center">
               <div class="col-md-6">
-                <div class="banner-content">
+                <div class="banner-content animate__animated animate__fadeInLeft">
                   <h1 class="display-2 text-uppercase text-dark pb-5">Your Products Are Great.</h1>
-                  <a href="shop.html" class="btn btn-medium btn-dark text-uppercase">Shop Product</a>
+                  <a href="shop.html"
+                     class="btn btn-medium btn-dark text-uppercase shadow-lg rounded-pill animate__animated animate__fadeInUp">
+                    Shop
+                    Product
+                  </a>
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="image-holder">
-                  <img src="../assets/images/lap.png" alt="banner">
+                <div class="image-holder text-center animate__animated animate__zoomIn">
+                  <img src="../../assets/images/lap.png" alt="banner" class="img-fluid rounded">
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Swiper Slide 2 -->
-        <div class="swiper-slide">
+
+        <!-- Carousel Slide 2 -->
+        <div class="carousel-item">
           <div class="container">
             <div class="row d-flex align-items-center">
               <div class="col-md-6">
-                <div class="banner-content">
+                <div class="banner-content animate__animated animate__fadeInLeft">
                   <h1 class="display-2 text-uppercase text-dark pb-5">Technology Hack You Won't Get</h1>
-                  <a href="shop.html" class="btn btn-medium btn-dark text-uppercase">Shop Product</a>
+                  <a href="shop.html"
+                     class="btn btn-medium btn-dark text-uppercase shadow-lg rounded-pill animate__animated animate__fadeInUp">
+                    Shop
+                    Product
+                  </a>
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="image-holder">
-                  <img src="../assets/images/banner-image.png" alt="banner">
+                <div class="image-holder text-center animate__animated animate__zoomIn">
+                  <img src="../../assets/images/laptp.png" alt="banner" class="img-fluid rounded">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item ">
+          <div class="container">
+            <div class="row d-flex align-items-center">
+              <div class="col-md-6">
+                <div class="banner-content animate__animated animate__fadeInLeft">
+                  <h1 class="display-2 text-uppercase text-dark pb-5">Your Products Are Great.</h1>
+                  <a href="shop.html"
+                     class="btn btn-medium btn-dark text-uppercase shadow-lg rounded-pill animate__animated animate__fadeInUp">
+                    Shop
+                    Product
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="image-holder text-center animate__animated animate__zoomIn">
+                  <img src="../../assets/images/acc.png" alt="banner" class="img-fluid rounded">
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Swiper Navigation Arrows -->
-      <div class="swiper-icon swiper-arrow swiper-arrow-prev">
-        <svg class="bi bi-chevron-left" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M11.354 1.354a.5.5 0 0 0-.708-.708l-5 5a.5.5 0 0 0 0 .708l5 5a.5.5 0 0 0 .708-.708L6.707 6l4.647-4.646z" />
-        </svg>
-      </div>
-      <div class="swiper-icon swiper-arrow swiper-arrow-next">
-        <svg class="bi bi-chevron-right" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 1.354a.5.5 0 1 1 .708-.708l5 5a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708L9.293 6 4.646 1.354z" />
-        </svg>
-      </div>
+      <!-- Carousel Slide 1 -->
+     
+
+      <!-- Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </section>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
- 
-    <main>
-      <div class="container">
-        <!-- Laptops Section -->
-        <h1>Laptops</h1>
-        <div *ngIf="laptops.length; else noLaptops">
-          <div class="product-grid">
-            <div *ngFor="let laptop of laptops" class="product">
-              <img [src]="laptop.imagePath" alt="{{laptop.imagePath}}" />
-              <h2>{{ laptop.productName }}</h2>
 
-              <p>Price: {{ laptop.price | currency:'PKR':true }}</p>
-              <p>Discounted Price: {{ laptop.discountedPrice | currency:'PKR':true }}</p>
-              <p>Description: {{ laptop.description }}</p>
-              <button (click)="addToCart(laptop)">Add to Cart</button>
+  <main>
+    <div class="container">
+      <!-- Laptops Section -->
+      <section id="laptops">
+        <div>
+          <h1 style=" padding-top: 3%; font-family: Arial; padding-bottom: 3%; font-style:italic">Laptops</h1>
+          <div *ngIf="laptops.length; else noLaptops">
+            <div class="product-grid">
+              <div *ngFor="let laptop of laptops" class="product">
+                <img [src]=" 'http://localhost:5260/' + laptop.imagePath" alt="{{laptop.imagePath}}" />
+
+                <h2>{{ laptop.productName }}</h2>
+                <p>Price: {{ laptop.price | currency:'PKR':true }}</p>
+                <p>Discounted Price: {{ laptop.discountedPrice | currency:'PKR':true }}</p>
+                <p>Description: {{ laptop.description }}</p>
+                <button (click)="addToCart(laptop)">Add to Cart</button>
+              </div>
             </div>
           </div>
+          <ng-template #noLaptops>
+            <p>No laptops available.</p>
+          </ng-template>
         </div>
-        <ng-template #noLaptops>
-          <p>No laptops available.</p>
-        </ng-template>
+      </section>
 
-        <!-- LCDs Section -->
-        <h1>LCDs</h1>
+      <!-- LCDs Section -->
+      <section id="lcds">
+        <h1 style=" padding-top: 3%; font-family: Arial; padding-bottom: 3%; font-style:italic">LCDs</h1>
         <div *ngIf="lcds.length; else noLcds">
           <div class="product-grid">
             <div *ngFor="let lcd of lcds" class="product">
-              <img [src]="lcd.imagePath" alt="{{lcd.productName}}" />
+              <img [src]=" 'http://localhost:5260/' + lcd.imagePath" alt="{{lcd.imagePath}}" />
               <h2>{{ lcd.productName }}</h2>
               <p>Price: {{ lcd.price | currency:'PKR':true }}</p>
               <p>Discounted Price: {{ lcd.discountedPrice | currency:'PKR':true }}</p>
@@ -217,15 +260,17 @@
         <ng-template #noLcds>
           <p>No LCDs available.</p>
         </ng-template>
+      </section>
 
-        <!-- Accessories Section -->
-        <h1>Accessories</h1>
+      <!-- Accessories Section -->
+      <section id="accessories">
+        <h1 style=" padding-top: 3%; font-family: Arial; padding-bottom: 3%; font-style:italic">Accessories</h1>
         <div *ngIf="accessories.length; else noAccessories">
           <div class="product-grid">
             <div *ngFor="let accessory of accessories" class="product">
-              <img [src]="accessory.imagePath" alt="{{accessory.productName}}" />
+              <img [src]=" 'http://localhost:5260/' +  accessory.imagePath" alt="{{accessory.productName}}" />
               <h2>{{ accessory.productName }}</h2>
-              <p>Price: {{ accessory.price |currency:'PKR':true }}</p>
+              <p>Price: {{ accessory.price | currency:'PKR':true }}</p>
               <p>Discounted Price: {{ accessory.discountedPrice | currency:'PKR':true }}</p>
               <p>Description: {{ accessory.description }}</p>
               <button (click)="addToCart(accessory)">Add to Cart</button>
@@ -235,8 +280,10 @@
         <ng-template #noAccessories>
           <p>No accessories available.</p>
         </ng-template>
-      </div>
-    </main>
+      </section>
+    </div>
+
+  </main>
 
   <footer id="footer" class="bg-white text-light py-5">
     <div class="container">

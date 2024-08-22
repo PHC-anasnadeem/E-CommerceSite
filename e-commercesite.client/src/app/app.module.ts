@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module'; 
+import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -13,8 +13,10 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CartComponent } from './cart/cart.component';
-
-
+import { DxDataGridModule } from 'devextreme-angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -24,21 +26,27 @@ import { CartComponent } from './cart/cart.component';
     HomeComponent,
     LoginComponent,
     CartComponent
-
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    FormsModule,  
-    RouterModule,  
-    CommonModule
+    FormsModule,
+    RouterModule,
+    CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    DxDataGridModule,
+
+    MatDialogModule,
+    MatButtonModule,
+
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: tokenInterceptor, 
+      useClass: tokenInterceptor,
       multi: true
     },
     provideAnimationsAsync()

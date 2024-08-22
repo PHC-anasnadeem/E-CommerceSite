@@ -25,11 +25,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("ecommercesiteforzubairtraders123456789"))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(
+                Environment.GetEnvironmentVariable("JWT_SECRET_KEY") ?? "fallback-secret-key"))
         };
     });
 
-// Add CORS policy
 // Add CORS policy
 builder.Services.AddCors(options =>
 {
@@ -41,19 +41,20 @@ builder.Services.AddCors(options =>
             .AllowCredentials());
 });
 
+
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Email registrations service
-builder.Services.AddScoped<EmailUtility>(sp => new EmailUtility("mail.phc.org.pk", 587, "anas.nadeem@phc.org.pk", "Bluemoon77"));
+builder.Services.AddScoped<EmailUtility>(sp => new EmailUtility(
+    "mail.phc.org.pk", 587, "anas.nadeem@phc.org.pk", "Bluemoon77"));
 builder.Services.AddScoped<EmailService>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -61,7 +62,6 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    // In production, use the generic error handling middleware
     app.UseExceptionHandler(errorApp =>
     {
         errorApp.Run(async context =>
@@ -72,6 +72,7 @@ else
             var error = context.Features.Get<IExceptionHandlerFeature>();
             if (error != null)
             {
+                // Log the exception here
                 await context.Response.WriteAsync(new
                 {
                     StatusCode = context.Response.StatusCode,
@@ -85,10 +86,10 @@ else
 
 app.UseCors("AllowSpecificOrigin");
 
-app.UseHttpsRedirection();
-app.UseDefaultFiles();
-app.UseStaticFiles();
+app.UseCors("AllowSpecificOrigin");
 
+app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 app.UseRouting();
 

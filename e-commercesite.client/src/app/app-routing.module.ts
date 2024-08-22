@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
 ];
 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

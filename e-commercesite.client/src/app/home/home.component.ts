@@ -1,21 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ProductService } from '../product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   laptops: any[] = [];
   lcds: any[] = [];
   accessories: any[] = [];
   errorMessage: string | null = null;
+  slideCount: number = 0;
+  currentSlideIndex: number = 0;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCategoryData();
+  }
+
+  ngAfterViewInit(): void {
+    this.slideCount = document.querySelectorAll('.slide').length;
+   
   }
 
   getCategoryData(): void {
@@ -32,19 +40,32 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-  addToCart(productId: number): void {
-    this.productService.addToCart(productId).subscribe(
-      () => {
-        this.productService.getCart().subscribe(cartItems => {
-          this.productService.updateCartItemCount(cartItems.length);
-        });
-        console.log('Product added to cart:', productId);
-      },
-      error => console.error('Error adding product to cart', error)
-    );
+
+  addToCart(data: any): void {
+    if (!data) {
+      console.error('Invalid data provided');
+      return;
+    }
+
+    const cartData = localStorage.getItem('cart');
+    let cartItems: any[] = cartData ? JSON.parse(cartData) : [];
+
+    const existingItemIndex = cartItems.findIndex(item => item.id === data.id);
+    if (existingItemIndex !== -1) {
+      cartItems[existingItemIndex].quantity += 1;
+    } else {
+      data.quantity = 1; 
+      cartItems.push(data);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    this.productService.updateCartItemCount(cartItems.length);
+
+    console.log('Product added to cart:', data);
   }
 
-  removeFromCart(productId: number): void {
-    
-  }
+
+
 }
+
+
