@@ -1,14 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpInterceptorFn } from '@angular/common/http';
-
+import { HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { tokenInterceptor } from './token.interceptor';
 
 describe('tokenInterceptor', () => {
-  const interceptor: HttpInterceptorFn = (req, next) => 
-    TestBed.runInInjectionContext(() =>  tokenInterceptor(req, next));
+  let interceptor: (req: HttpRequest<any>, next: HttpHandler) => Observable<HttpEvent<any>>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
+    interceptor = (req, next) =>
+      TestBed.runInInjectionContext(() => tokenInterceptor (req, next));
   });
 
   it('should be created', () => {

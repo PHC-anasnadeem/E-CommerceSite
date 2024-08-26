@@ -8,7 +8,7 @@ import { ProductService } from '../../product.service';
 })
 export class HeaderComponent implements OnInit {
   cartItemCount: number = 0;
-  showCart: boolean = false; // Flag to control cart visibility
+  showCart: boolean = false;
 
   constructor(private productService: ProductService) { }
 
@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   closeCart(): void {
     this.showCart = false;
   }
+
   scrollTo(sectionId: string): void {
     const element = document.getElementById(sectionId);
     if (element) {

@@ -13,15 +13,15 @@ namespace E_CommerceSite.Server.Controllers
             _emailUtility = emailUtility;
         }
 
-        public async Task SendTestEmailAsync()
+        public async Task SendTestEmailAsync(string toEmailAddress)
         {
             try
             {
                 await _emailUtility.SendEmailAsync(
-                    from: "anas.nadeem@phc.org.pk",
-                    to: "tayyabrajpoot122@gmail.com",
-                    subject: "Test Email",
-                    body: "<h1>Hello World!</h1><p>This is a test email.</p>",
+                    from: "tayyabrajpoot122@gmail.com",
+                    to: toEmailAddress,
+                    subject: "Order Confirmation",
+                    body: "<h1>Thank you for your order!</h1><p>Your order has been successfully placed. We will process it shortly.</p>",
                     isBodyHtml: true
                 );
                 Console.WriteLine("Email sent successfully.");

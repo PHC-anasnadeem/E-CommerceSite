@@ -54,7 +54,7 @@
       <div class="summary-details">
         <p>Subtotal ({{ cartItems.length }} items): <strong>{{ grandTotal | currency: 'PKR' }}</strong></p>
       </div>
-      <button (click)="openCheckoutPopup()" class="btn-proceed-checkout">Proceed to Checkout</button>
+      <button (click)="openCheckoutPopup(cartItems)" class="btn-proceed-checkout">Proceed to Checkout</button>
       <div class="secure-payment">
         <p><i class="fa fa-lock"></i> Thank you for shopping</p>
       </div>
@@ -62,7 +62,7 @@
   </div>
 </div>
 
-<div class="modal" [ngClass]="{'modal-open': isPopupOpen}">
+<!--<div class="modal" [ngClass]="{'modal-open': isPopupOpen}">
   <div class="modal-content">
     <span class="close-btn" (click)="closeCheckoutPopup()">&times;</span>
     <h4 style="font-weight:bold">Checkout</h4>
@@ -98,7 +98,7 @@
       <button type="submit" class="btn-submit">Place Order</button>
     </form>
   </div>
-</div>
+</div>-->
 
 <footer class="footer">
   <p>&copy; 2024 Your Company. All rights reserved.</p>

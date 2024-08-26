@@ -39,7 +39,7 @@ namespace E_CommerceSite.Server.Controllers
 
                 if (result.IsSuccess)
                 {
-                    await _emailService.SendTestEmailAsync();
+                    //await _emailService.SendTestEmailAsync();
                     return Ok(new { Token = result.Token });
                 }
                 else
@@ -169,29 +169,35 @@ namespace E_CommerceSite.Server.Controllers
             var items = await _context.CartItems.ToListAsync();
             return Ok(items);
         }
+
+
+        [HttpPost("SubmitOrder")]
+        public async Task<IActionResult> SubmitOrder([FromForm] Orders order)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Orders.Add(order);
+                await _context.SaveChangesAsync();
+
+                try
+                {
+                    await _emailService.SendTestEmailAsync(order.Email);
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, new { message = "Order placed, but there was an error sending the email." });
+                }
+
+                return Ok(new { message = "Order placed successfully!" });
+            }
+            else
+            {
+                return BadRequest(new { message = "Invalid order data." });
+            }
+        }
+
+
     }
-
-
-
-    //[HttpPost ("cart")]
-    //public async Task<IActionResult> cart([FromForm] Product cartItem)
-    //{
-    //    if (cartItem == null)
-    //    {
-    //        return BadRequest("Invalid cart item");
-    //    }
-
-    //    _context.CartItems.Add(cartItem);
-    //    await _context.SaveChangesAsync();
-
-    //    return Ok(new { message = "Item added to cart" });
-    //}
-
-
-
-
-
-
 
 
 }

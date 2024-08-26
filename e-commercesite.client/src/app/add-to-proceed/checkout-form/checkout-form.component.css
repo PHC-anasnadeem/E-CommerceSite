@@ -1,0 +1,134 @@
+/* General Styles */
+.panel {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+}
+
+.panel-heading {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+}
+
+.pop-up-heading {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.phone-input {
+  display: flex;
+  align-items: center;
+}
+
+  .phone-input select,
+  .phone-input input {
+    flex: 1;
+  }
+
+  .phone-input select {
+    margin-right: 10px;
+  }
+
+/* Form Controls */
+input.form-control,
+textarea.form-control,
+select.form-control {
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  font-size: 16px;
+}
+
+  input.form-control:focus,
+  textarea.form-control:focus,
+  select.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+    outline: none;
+  }
+
+.custom-btn-group {
+  display: flex;
+  justify-content: center; 
+  padding-top: 20px;
+}
+
+.btn {
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+  .btn-success:hover {
+    background-color: #218838;
+  }
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Additional Styles */
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.margin-bottom-0 {
+  margin-bottom: 0;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.padding-top-20 {
+  padding-top: 20px;
+}
+
+/* Animations */
+.modal-content {
+  animation: bounceIn 0.5s ease;
+}
+
+/* Keyframes */
+@keyframes bounceIn {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

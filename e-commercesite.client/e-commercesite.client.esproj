@@ -8,8 +8,12 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\e-commercesite.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\app\NewFolder1\" />
+    <None Remove="src\app\NewFolder1\**" />
+    <None Remove="src\app\NewFolder\**" />
+    <TypeScriptConfiguration Remove="src\app\NewFolder1\**" />
+    <TypeScriptConfiguration Remove="src\app\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="src\app\mode\" />
-    <Folder Include="src\app\NewFolder\" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { CheckoutFormComponent } from '../add-to-proceed/checkout-form/checkout-form.component'
 
 @Component({
   selector: 'app-cart',
@@ -11,36 +14,23 @@ export class CartComponent implements OnInit {
   cartItems: any[] = [];
   grandTotal: number = 0;
   isPopupOpen: boolean = false;
-  orderDetails: any = {
-    name: '',
-    address: '',
-    phone: '',
-    email: '',
-    paymentMethod: 'cash'
-  };
+  //orderDetails: any = {
+  //  name: '',
+  //  address: '',
+  //  phone: '',
+  //  email: '',
+  //  paymentMethod: 'cash'
+  //};
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private router: Router, public dialog: MatDialog, public route: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    debugger;
     this.loadCart();
   }
 
-  //loadCart(): void {
-  //  const cartData = localStorage.getItem('cart');
-  //  if (cartData) {
-  //    try {
-  //      this.cartItems = JSON.parse(cartData) || [];
-  //      this.calculateGrandTotal();
-  //    } catch (error) {
-  //      console.error('Error parsing cart data from session storage', error);
-  //      this.cartItems = [];
-  //    }
-  //  } else {
-  //    this.cartItems = [];
-  //  }
-  //}
-
   loadCart(): void {
+    debugger;
     const cartData = localStorage.getItem('cart');
     if (cartData) {
       try {
@@ -63,41 +53,32 @@ export class CartComponent implements OnInit {
   }
 
   increaseQuantity(index: number): void {
-    if (typeof this.cartItems[index].quantity !== 'number') {
-      this.cartItems[index].quantity = Number(this.cartItems[index].quantity) || 0;
-    }
     this.cartItems[index].quantity++;
     this.updateCart();
   }
 
   decreaseQuantity(index: number): void {
-    if (typeof this.cartItems[index].quantity !== 'number') {
-      this.cartItems[index].quantity = Number(this.cartItems[index].quantity) || 0;
-    }
     if (this.cartItems[index].quantity > 1) {
       this.cartItems[index].quantity--;
       this.updateCart();
     }
   }
 
-  updateCart(): void {
-    this.cartItems.forEach(item => {
-      if (typeof item.quantity !== 'number' || isNaN(item.quantity)) {
-        item.quantity = Number(item.quantity) || 1;
-      }
-    });
-
-    sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
-    this.calculateGrandTotal();
+  removeItem(index: number): void {
+    this.cartItems.splice(index, 1);  
+    this.updateCart();  // Update the cart in both localStorage and sessionStorage
   }
 
-  removeItem(index: number): void {
-    this.cartItems.splice(index, 1);
-    this.updateCart();
+  updateCart(): void {
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
+    sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
+    this.calculateGrandTotal();
+    this.productService.updateCartItemCount(this.cartItems.length);
   }
 
   clearCart(): void {
     this.cartItems = [];
+    localStorage.removeItem('cart');
     sessionStorage.removeItem('cart');
     this.grandTotal = 0;
   }
@@ -106,21 +87,28 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  openCheckoutPopup(): void {
-    this.isPopupOpen = true;
+  openCheckoutPopup(cartItems: any): void {
+    debugger;
+
+    const dialogRef = this.dialog.open(CheckoutFormComponent, {
+      width: '700px',
+      height: 'auto',
+      data: cartItems,
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == true) {
+
+      }
+    });
+   
   }
 
   closeCheckoutPopup(): void {
     this.isPopupOpen = false;
   }
 
-  submitOrder(): void {
-    if (this.orderDetails.name && this.orderDetails.address && this.orderDetails.phone) {
-      // Handle form submission, e.g., send order details to backend
-      console.log('Order Details:', this.orderDetails);
-      // After successful submission, clear cart and close popup
-      this.clearCart();
-      this.closeCheckoutPopup();
-    }
+  
+
   }
-}
+

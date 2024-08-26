@@ -13,20 +13,20 @@
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Orders> Orders { get; set; }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
 
-        //    modelBuilder.Entity<Product>(entity =>
-        //    {
-        //        entity.ToTable("Products"); 
+            modelBuilder.Entity<Orders>()
+                .HasKey(o => o.OrderId);
 
-        //    });
 
-        //// Ignore Users table if it already exists
-        //modelBuilder.Ignore<User>();
-
-        //}
+            modelBuilder.Entity<Orders>()
+                .HasOne(o => o.Product)
+                .WithMany()
+                .HasForeignKey(o => o.ProductId);
+        }
     }
+
 }

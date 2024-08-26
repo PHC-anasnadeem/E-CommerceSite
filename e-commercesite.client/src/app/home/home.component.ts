@@ -18,12 +18,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
+    // Clear cart data on home page load
+    localStorage.removeItem('cart');
+    sessionStorage.removeItem('cart');
+    this.productService.updateCartItemCount(0);
+
     this.getCategoryData();
   }
 
   ngAfterViewInit(): void {
     this.slideCount = document.querySelectorAll('.slide').length;
-   
   }
 
   getCategoryData(): void {
@@ -54,7 +58,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (existingItemIndex !== -1) {
       cartItems[existingItemIndex].quantity += 1;
     } else {
-      data.quantity = 1; 
+      data.quantity = 1;
       cartItems.push(data);
     }
 
@@ -63,9 +67,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     console.log('Product added to cart:', data);
   }
-
-
-
 }
-
-
