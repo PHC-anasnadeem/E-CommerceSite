@@ -18,7 +18,7 @@ namespace E_CommerceSite.Server.Controllers
             try
             {
                 await _emailUtility.SendEmailAsync(
-                    from: "tayyabrajpoot122@gmail.com",
+                    from: "anas.nadeem@phc.org.pk",
                     to: toEmailAddress,
                     subject: "Order Confirmation",
                     body: "<h1>Thank you for your order!</h1><p>Your order has been successfully placed. We will process it shortly.</p>",

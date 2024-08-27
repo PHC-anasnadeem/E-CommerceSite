@@ -21,11 +21,6 @@
             modelBuilder.Entity<Orders>()
                 .HasKey(o => o.OrderId);
 
-
-            modelBuilder.Entity<Orders>()
-                .HasOne(o => o.Product)
-                .WithMany()
-                .HasForeignKey(o => o.ProductId);
         }
     }
 

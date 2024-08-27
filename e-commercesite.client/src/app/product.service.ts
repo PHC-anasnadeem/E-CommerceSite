@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,7 @@ export class ProductService {
   private categoryUrl = 'http://localhost:5260/api/values/GetCategories';
   private cartUrl = 'http://localhost:5260/api/values/AddToCart';
   private OrderSubmit = 'http://localhost:5260/api/values/SubmitOrder';
+  baseService: string = 'http://localhost:5260/';
 
   private cartItemCount = new BehaviorSubject<number>(0);
   cartItemCount$ = this.cartItemCount.asObservable();
@@ -91,13 +94,37 @@ export class ProductService {
     this.updateCartItemCount(0);
   }
 
-  submitOrder(formData: FormData): Observable<any> {
+  //submitOrder(orderDetails: any): Observable<any> {
+  //  return this.http.post<any>(this.OrderSubmit, orderDetails).pipe(
+  //    map(res => res),
+  //    catchError(this.handleError)
+  //  );
+  //}
+
+  //public submitOrder(orderDetails: any) {
+  //  debugger;
+  //  return this.http.post('http://localhost:5260/api/Values/SubmitOrder', orderDetails).pipe(
+  //    map(res => {
+  //      return res;
+  //    }),
+  //    catchError(this.handleError) 
+  //  );
+  //}
+
+  public submitOrder(orderDetails: any) {
     debugger;
-    return this.http.post<any>(this.OrderSubmit, formData).pipe(
-      map(res => res),
+    return this.http.post('http://localhost:5260/api/Values/SubmitOrder', JSON.stringify(orderDetails), {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(
+      map(res => {
+        return res;
+      }),
       catchError(this.handleError)
     );
   }
+
 
 }
 

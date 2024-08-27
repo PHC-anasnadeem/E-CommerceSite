@@ -86,8 +86,6 @@ else
 
 app.UseCors("AllowSpecificOrigin");
 
-app.UseCors("AllowSpecificOrigin");
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

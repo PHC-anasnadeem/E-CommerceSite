@@ -123,36 +123,56 @@ export class CheckoutFormComponent implements OnInit {
 
   submitOrder(form: NgForm): void {
     if (form.valid) {
+      debugger;
+      console.log('Form is valid. Proceeding with order submission.');
 
       this.modelMain.forEach((item: any) => {
-        this.orderDetails = {
-          id: item.id,
-          quantity: item.quantity,
-          discountedPrice: item.discountedPrice,
-          imagePath: item.imagePath,
+        console.log('Processing item:', item);
 
-          name: this.orderDetails.name,
-          email: this.orderDetails.email,
-          address: this.orderDetails.address,
-          phone: this.orderDetails.phone,
-          countryCode: this.orderDetails.countryCode,
-          paymentMethod: this.orderDetails.paymentMethod,
+        this.orderDetails = {
+          "productId": item.id,
+          "quantity": item.quantity,
+          "discountedPrice": item.discountedPrice,
+          "imagePath": item.imagePath,
+          userId: 1,
+   /*       "orderId":0,*/
+          "name": this.orderDetails.name,
+          "email": this.orderDetails.email,
+          "address": this.orderDetails.address,
+          "orderDate": new Date(),
+          "phone": this.orderDetails.phone,
+          "countryCode": this.orderDetails.countryCode,
+          "paymentMethod": this.orderDetails.paymentMethod,
+          "orderStatus": "Pending",
+          "totalPrice": item.discountedPrice * item.quantity,
+          "isActive": true
+      
         };
+
+        console.log('Order details being sent to API:', this.orderDetails);
 
         this.productService.submitOrder(this.orderDetails).subscribe(
           (data: any) => {
+            debugger;
+            console.log('API response:', data);
             Swal.fire('Order placed successfully!', 'Your order has been submitted.', 'success');
           },
           (error) => {
+            debugger;
+            console.error('Error from API:', error);
             Swal.fire('Error', 'There was an issue submitting your order.', 'error');
           }
         );
       });
+
       this.closeCheckoutPopup();
     } else {
+
+      console.warn('Form is invalid. Cannot proceed with order submission.');
       Swal.fire('Form Error', 'Please fill in all required fields.', 'error');
     }
   }
+
 
 
 

@@ -171,11 +171,17 @@ namespace E_CommerceSite.Server.Controllers
         }
 
 
+
+        #region "SubmitOrder"
         [HttpPost("SubmitOrder")]
-        public async Task<IActionResult> SubmitOrder([FromForm] Orders order)
+        public async Task<IActionResult> SubmitOrder([FromBody] Orders order)
         {
             if (ModelState.IsValid)
             {
+                var maxUserId = await _context.Orders.MaxAsync(o => (int?)o.UserId) ?? 0;
+
+                order.UserId = maxUserId + 1;
+
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
 
@@ -195,6 +201,9 @@ namespace E_CommerceSite.Server.Controllers
                 return BadRequest(new { message = "Invalid order data." });
             }
         }
+        #endregion
+
+
 
 
     }
