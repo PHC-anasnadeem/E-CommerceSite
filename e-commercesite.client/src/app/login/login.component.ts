@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../product.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { AuthService } from '../AuthService/auth.service'
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -29,10 +31,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
+
   onSubmit(): void {
     if (this.loginForm.valid) {
       debugger;
-      this.productService.login(this.loginForm.value).subscribe(
+      this.authService.login(this.loginForm.value).subscribe(
         (data: any) => {
           debugger;
           console.log('Login successful:', data);
@@ -47,7 +50,7 @@ export class LoginComponent implements OnInit {
             confirmButtonText: 'OK'
           }).then(() => {
    
-            this.router.navigate(['/admin-dashboard']);
+            this.router.navigate(['/dashboard']);
           });
         },
         (error) => {

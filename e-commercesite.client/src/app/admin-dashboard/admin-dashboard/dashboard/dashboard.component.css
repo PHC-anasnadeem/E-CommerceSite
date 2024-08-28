@@ -216,16 +216,15 @@ input[type="number"] {
   left: 50%;
   transform: translate(-50%);
 }
-
 .background {
-  background-image: url(../../../../assets/images/admin-dashboard-wallpaper.jpg);
-  background-size: cover; /* Ensures the image covers the entire container */
+  background-image: url(../../../../assets/images/2838063.jpg);
+  background-size: contain; /* Scales the image to fit within the container while maintaining aspect ratio */
   background-position: center; /* Centers the image within the container */
   background-repeat: no-repeat;
   background-attachment: fixed;
-  min-height: 100vh;
-  margin: 0; /* Remove any default margin */
+  min-height: 100vh; /* Adjust the height of the background container */
+  margin: 0;
   padding: 0;
+  width: 100%; /* Ensure the container takes up the full width of the screen */
 }
-
 

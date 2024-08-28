@@ -12,7 +12,7 @@ import { tokenInterceptor } from './Interceptor/token.interceptor';
 import { CommonModule } from '@angular/common';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CartComponent } from './cart/cart.component';
-import { DxDataGridModule } from 'devextreme-angular';
+import { DxDataGridModule, DxButtonModule } from 'devextreme-angular';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
@@ -20,6 +20,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { OrdersComponent } from './orders/orders.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -31,6 +35,8 @@ import { MatOptionModule } from '@angular/material/core';
     HomeComponent,
     LoginComponent,
     CartComponent,
+    SidebarComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,10 +47,12 @@ import { MatOptionModule } from '@angular/material/core';
     CommonModule,
     ToastrModule.forRoot(),
     DxDataGridModule,
+    DxButtonModule,
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    BrowserAnimationsModule,
     MatSelectModule,
     MatOptionModule
   ],

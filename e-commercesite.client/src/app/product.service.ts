@@ -94,22 +94,6 @@ export class ProductService {
     this.updateCartItemCount(0);
   }
 
-  //submitOrder(orderDetails: any): Observable<any> {
-  //  return this.http.post<any>(this.OrderSubmit, orderDetails).pipe(
-  //    map(res => res),
-  //    catchError(this.handleError)
-  //  );
-  //}
-
-  //public submitOrder(orderDetails: any) {
-  //  debugger;
-  //  return this.http.post('http://localhost:5260/api/Values/SubmitOrder', orderDetails).pipe(
-  //    map(res => {
-  //      return res;
-  //    }),
-  //    catchError(this.handleError) 
-  //  );
-  //}
 
   public submitOrder(orderDetails: any) {
     debugger;
@@ -124,7 +108,16 @@ export class ProductService {
       catchError(this.handleError)
     );
   }
-
+  getOrders(): Observable<any[]> {
+    return this.http.get<any[]>(  'http://localhost:5260/api/Values/GetOrders').pipe(
+      catchError(this.handleError)
+    );
+  }
+  completeOrder(orderId: number): Observable<void> {
+    return this.http.post<void>(`http://localhost:5260/api/Values/CompleteOrder/${orderId}`, {}).pipe(
+      catchError(this.handleError)
+    );
+  }
 
 }
 

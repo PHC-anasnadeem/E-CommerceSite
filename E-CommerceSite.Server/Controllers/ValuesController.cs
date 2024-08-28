@@ -204,6 +204,63 @@ namespace E_CommerceSite.Server.Controllers
         #endregion
 
 
+        [HttpGet("GetOrders")]
+        public async Task<ActionResult<IEnumerable<Orders>>> GetOrders()
+        {
+            try
+            {
+                var completedOrders = await _context.Orders.CountAsync(o => o.OrderStatus == "Completed");
+
+                var orders = await _context.Orders
+                    .Where(o => o.OrderStatus == "Pending")
+                    .Select(o => new
+                    {
+                        o.OrderId,
+                        o.Name,
+                        o.Quantity,
+                        o.DiscountedPrice,
+                        o.OrderStatus,
+                        o.OrderDate,
+                        o.ImagePath,
+                        o.Phone,
+                        o.Email,
+                        o.UserId,
+                        o.Address,
+                        TotalPrice = o.Quantity * o.DiscountedPrice,
+                        
+                    })
+                    .ToListAsync();
+
+                var result = new
+                {
+                    CompletedOrdersCount = completedOrders,
+                    PendingOrders = orders
+                };
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+
+        [HttpPost("CompleteOrder/{orderId}")]
+        public async Task<IActionResult> CompleteOrder(int orderId)
+        {
+            var order = await _context.Orders.FindAsync(orderId);
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            order.OrderStatus = "Completed";
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
 
 
     }

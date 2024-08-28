@@ -14,13 +14,6 @@ export class CartComponent implements OnInit {
   cartItems: any[] = [];
   grandTotal: number = 0;
   isPopupOpen: boolean = false;
-  //orderDetails: any = {
-  //  name: '',
-  //  address: '',
-  //  phone: '',
-  //  email: '',
-  //  paymentMethod: 'cash'
-  //};
 
   constructor(private productService: ProductService, private router: Router, public dialog: MatDialog, public route: ActivatedRoute,) { }
 
@@ -66,7 +59,7 @@ export class CartComponent implements OnInit {
 
   removeItem(index: number): void {
     this.cartItems.splice(index, 1);  
-    this.updateCart();  // Update the cart in both localStorage and sessionStorage
+    this.updateCart();
   }
 
   updateCart(): void {

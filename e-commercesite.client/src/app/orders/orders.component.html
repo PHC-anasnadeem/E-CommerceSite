@@ -1,0 +1,89 @@
+<section class="panel panel-primary">
+  <div class="panel-heading">
+    <strong>Order Summary</strong>
+  </div>
+
+  <div class="order-summary">
+    <h2>Orders</h2>
+    <div class="row">
+      <div class="column">
+        <div>Total Orders: {{ totalOrders }}</div>
+      </div>
+      <div class="column">
+        <div>Pending Orders: {{ pendingOrders }}</div>
+      </div>
+      <div class="column">
+        <div>Completed Orders: {{ CompletedOrders }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <strong>Product Order Details</strong>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer Name</th>
+            <th>Phone</th>
+            <th>Quantity</th>
+            <th>Product Image</th>
+            <th>Total Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{ order.orderId }}</td>
+            <td>{{ order.name }}</td>
+            <td>{{ order.phone }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>
+              <img [src]="'http://localhost:5260/' + order.imagePath" alt="Product Image" style="width: 100px; height: auto;">
+            </td>
+            <td>{{ order.totalPrice | currency: 'PKR' }}</td>
+            <td>
+              <i (click)="viewDetail(order)" class="fa fa-eye action-icon text-success" title="View" style="padding: 10px"></i>
+              <i *ngIf="order.status !== 'Completed'" (click)="completeOrder(order.orderId)" class="fa fa-check action-icon text-primary" title="Complete"></i>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="modal" [ngClass]="{'show': showAddressModal}" (click)="closeAddressModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <span class="close" (click)="closeAddressModal()">&times;</span>
+      <h3 class="modal-header" style="text-align: center">Order Details</h3>
+      <div class="modal-body">
+        <div class="details-container" style="text-align:left">
+          <div class="details-column">
+            <p><strong>Order Date:</strong> {{ selectedOrder?.orderDate | date: 'mediumDate' }}</p>
+            <p><strong>Order ID:</strong> {{ selectedOrder?.orderId }}</p>
+            <p><strong>User ID:</strong> {{ selectedOrder?.userId }}</p>
+            <p><strong>Email:</strong> {{ selectedOrder?.email }}</p>
+
+          </div>
+          <div class="details-column">
+            <p><strong>Customer Name:</strong> {{ selectedOrder?.name }}</p>
+            <p><strong>Address:</strong> {{ selectedOrder?.address }}</p>
+            <p><strong>Phone:</strong> {{ selectedOrder?.phone }}</p>
+            <p><strong>Quantity:</strong> {{ selectedOrder?.quantity }}</p>
+            <p><strong>Total Price:</strong> {{ selectedOrder?.totalPrice | currency: 'PKR' }}</p>
+          </div>
+        </div>
+        <div class="image-container" *ngIf="selectedOrder?.imagePath">
+          <img [src]="'http://localhost:5260/' + selectedOrder?.imagePath" alt="Product Image">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
