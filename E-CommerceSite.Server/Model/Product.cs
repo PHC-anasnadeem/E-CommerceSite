@@ -4,7 +4,7 @@ namespace E_CommerceSite.Server.Model
 {
     public class Product
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
 
         public string selectedCategory { get; set; }
         [Required]
