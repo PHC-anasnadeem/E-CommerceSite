@@ -413,3 +413,6 @@ h2.category-title {
 .cart {
   z-index: 100; /* Make sure the cart icon is above other elements */
 }
+.cart-count-red {
+  color: red;
+}

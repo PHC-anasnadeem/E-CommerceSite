@@ -38,7 +38,7 @@
                
                 <li><a href="/cart" class="dropdown-item">Cart</a></li>
                 <li><a href="/cart" class="dropdown-item">Checkout</a></li>
-                <li><a href="tel:+923104717221" class="dropdown-item" style="text-decoration: none; ">Contact</a></li>
+                <li><a href="https://wa.me/923104717221" target="_blank" aria-label="Chat on WhatsApp" class="dropdown-item" style="text-decoration: none; ">Contact</a></li>
               </ul>
             </li>
             <li class="nav-item">
@@ -63,9 +63,13 @@
                       <svg class="cart">
                         <use xlink:href="#cart"></use>
                       </svg>
-                      <span class="cart-count">{{ cartItemCount }}</span>
+                      <span class="cart-count"
+                            [ngClass]="{'cart-count-red': cartItemCount > 0}">
+                        {{ cartItemCount }}
+                      </span>
                     </a>
                   </li>
+
 
                   <!-- Conditionally display the cart popup -->
                   <app-cart *ngIf="showCart" (close)="closeCart()"></app-cart>

@@ -498,7 +498,8 @@ h2.category-title {
 
 /* General Styling */
 #billboard {
-  background-color: #f0f8ff; /* Light blue background */
+  background-color: #f0f8ff;
+  border-radius: 20px;/* Light blue background */
 
 }
 
@@ -595,3 +596,22 @@ h2.category-title {
     padding: 8px 16px; /* Smaller button size for extra small screens */
   }
 }
+.whatsapp-icon {
+  position: fixed;
+  bottom: 20px; /* Distance from the bottom of the screen */
+  right: 10px; /* Distance from the right edge of the screen */
+  width: 55px; /* Increased size */
+  height: 70px; /* Increased size */
+  display: flex;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/ /* Shadow for better visibility */
+  z-index: 1000; /* Ensures it stays on top of other elements */
+}
+
+  .whatsapp-icon img {
+    width: 100%; /* Scale image to fit within the container */
+    height: 100%; /* Scale image to fit within the container */
+   
+  }
