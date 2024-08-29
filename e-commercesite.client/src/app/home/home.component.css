@@ -253,8 +253,8 @@ h2.category-title {
 /* Grid layout for products */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 0fr));
+  gap: 13px;
 }
 
 /* Product item styling */
@@ -288,7 +288,7 @@ h2.category-title {
 
   /* Image zoom effect on hover */
   .product:hover img {
-    transform: scale(1.1); /* Slight zoom on image */
+    transform: scale(1.03); /* Slight zoom on image */
   }
 
   /* Product details styling */
@@ -499,26 +499,28 @@ h2.category-title {
 /* General Styling */
 #billboard {
   background-color: #f0f8ff; /* Light blue background */
-  padding-top: 60px ; /* Padding around the section */
+
 }
 
 .carousel-inner {
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 10px; /* Rounded corners for the carousel */
+  border-radius: 20px; /* Rounded corners for the carousel */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
 .carousel-item {
-  min-height: 500px; /* Ensures a consistent height for carousel items */
+  /*min-height: 500px;*/ /* Ensures a consistent height for carousel items */
   align-items: center;
+  height:87vh;
 }
 
 .banner-content h1 {
   font-size: 3rem; /* Larger font size for the main heading */
   font-weight: bold;
-  color: #333; /* Dark text for better readability */
+  color: #333;
+  margin-left: 50px; /* Dark text for better readability */
 }
 
 .banner-content a {
@@ -567,7 +569,8 @@ h2.category-title {
 }
 
 .carousel-indicators .active {
-  background-color: #555; /* Slightly lighter when active */
+  background-color: #555;
+  /* Slightly lighter when active */
 }
 
 /* Media Queries */

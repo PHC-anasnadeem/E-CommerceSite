@@ -121,7 +121,7 @@
 
   <app-header></app-header>
   <!-- Main Content -->
-  <section id="billboard" class="position-relative bg-light-blue">
+  <section id="billboard" class="position-relative bg-light-blue" style=" WIDTH: 90%; MARGIN-LEFT: 5%; margin-top: 2%">
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -135,15 +135,10 @@
         <!-- Carousel Slide 1 -->
         <div class="carousel-item active">
           <div class="container">
-            <div class="row d-flex align-items-center">
+            <div class="row d-flex align-items-center" style=" margin-top: 95px">
               <div class="col-md-6">
                 <div class="banner-content animate__animated animate__fadeInLeft">
                   <h1 class="display-2 text-uppercase text-dark pb-5">Your Products Are Great.</h1>
-                  <a href="shop.html"
-                     class="btn btn-medium btn-dark text-uppercase shadow-lg rounded-pill animate__animated animate__fadeInUp">
-                    Shop
-                    Product
-                  </a>
                 </div>
               </div>
               <div class="col-md-6">
@@ -162,11 +157,7 @@
               <div class="col-md-6">
                 <div class="banner-content animate__animated animate__fadeInLeft">
                   <h1 class="display-2 text-uppercase text-dark pb-5">Technology Hack You Won't Get</h1>
-                  <a href="shop.html"
-                     class="btn btn-medium btn-dark text-uppercase shadow-lg rounded-pill animate__animated animate__fadeInUp">
-                    Shop
-                    Product
-                  </a>
+                
                 </div>
               </div>
               <div class="col-md-6">
@@ -184,11 +175,7 @@
               <div class="col-md-6">
                 <div class="banner-content animate__animated animate__fadeInLeft">
                   <h1 class="display-2 text-uppercase text-dark pb-5">Your Products Are Great.</h1>
-                  <a href="shop.html"
-                     class="btn btn-medium btn-dark text-uppercase shadow-lg rounded-pill animate__animated animate__fadeInUp">
-                    Shop
-                    Product
-                  </a>
+                
                 </div>
               </div>
               <div class="col-md-6">
@@ -204,7 +191,7 @@
      
 
       <!-- Controls -->
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      <button class="carousel-control-prev" style="width: 8%" type="button" data-bs-target="#carouselExampleIndicators"
               data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -221,10 +208,29 @@
 
   <main>
     <div class="container">
+      <!-- Accessories Section -->
+      <section id="accessories">
+        <h1 style=" padding-top: 3%; font-family: 'Poppins'; padding-bottom: 3%;">Accessories</h1>
+        <div *ngIf="accessories.length; else noAccessories">
+          <div class="product-grid">
+            <div *ngFor="let accessory of accessories" class="product">
+              <img [src]=" 'http://localhost:5260/' +  accessory.imagePath" alt="{{accessory.productName}}" />
+              <h2>{{ accessory.productName }}</h2>
+              <p>Price: {{ accessory.price | currency:'PKR':true }}</p>
+              <p>Discounted Price: {{ accessory.discountedPrice | currency:'PKR':true }}</p>
+              <p>Description: {{ accessory.description }}</p>
+              <button (click)="addToCart(accessory)">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <ng-template #noAccessories>
+          <p>No accessories available.</p>
+        </ng-template>
+      </section>
       <!-- Laptops Section -->
       <section id="laptops">
         <div>
-          <h1 style=" padding-top: 3%; font-family: Arial; padding-bottom: 3%; font-style:italic">Laptops</h1>
+          <h1 style=" padding-top: 3%; font-family: Arial; padding-bottom: 3%; ">Laptops</h1>
           <div *ngIf="laptops.length; else noLaptops">
             <div class="product-grid">
               <div *ngFor="let laptop of laptops" class="product">
@@ -246,7 +252,7 @@
 
       <!-- LCDs Section -->
       <section id="lcds">
-        <h1 style=" padding-top: 3%; font-family: Arial; padding-bottom: 3%; font-style:italic">LCDs</h1>
+        <h1 style=" padding-top: 3%; font-family: Arial; padding-bottom: 3%;">LCDs</h1>
         <div *ngIf="lcds.length; else noLcds">
           <div class="product-grid">
             <div *ngFor="let lcd of lcds" class="product">
@@ -264,25 +270,6 @@
         </ng-template>
       </section>
 
-      <!-- Accessories Section -->
-      <section id="accessories">
-        <h1 style=" padding-top: 3%; font-family: Arial; padding-bottom: 3%; font-style:italic">Accessories</h1>
-        <div *ngIf="accessories.length; else noAccessories">
-          <div class="product-grid">
-            <div *ngFor="let accessory of accessories" class="product">
-              <img [src]=" 'http://localhost:5260/' +  accessory.imagePath" alt="{{accessory.productName}}" />
-              <h2>{{ accessory.productName }}</h2>
-              <p>Price: {{ accessory.price | currency:'PKR':true }}</p>
-              <p>Discounted Price: {{ accessory.discountedPrice | currency:'PKR':true }}</p>
-              <p>Description: {{ accessory.description }}</p>
-              <button (click)="addToCart(accessory)">Add to Cart</button>
-            </div>
-          </div>
-        </div>
-        <ng-template #noAccessories>
-          <p>No accessories available.</p>
-        </ng-template>
-      </section>
     </div>
 
   </main>
@@ -410,29 +397,20 @@
         <div class="row d-flex flex-wrap justify-content-between">
           <div class="col-md-4 col-sm-6">
             <div class="shipping d-flex align-items-center">
-              <p class="mb-0 me-2">We ship with:</p>
-              <div class="card-wrap">
-                <img src="../assets/images/dhl.png" alt="DHL" class="img-fluid me-2">
-                <img src="../assets/images/shippingcard.png" alt="Shipping Card" class="img-fluid">
-              </div>
+              <p class="mb-0 me-2">© Copyright 2024 Mini Store.</p>
+              
             </div>
           </div>
           <div class="col-md-4 col-sm-6">
             <div class="payment-method d-flex align-items-center">
-              <p class="mb-0 me-2">Payment options:</p>
-              <div class="card-wrap">
-                <img src="../assets/images/visa.jpg" alt="Visa" class="img-fluid me-2">
-                <img src="../assets/images/mastercard.jpg" alt="MasterCard" class="img-fluid me-2">
-                <img src="../assets/images/paypal.jpg" alt="PayPal" class="img-fluid">
-              </div>
+              <p class="mb-0 me-2"> Design by: <a href="https://bestitsol.com/" class="text-dark">BestITSol</a></p>
+             
             </div>
           </div>
           <div class="col-md-4 col-sm-6">
             <div class="copyright text-center">
               <p class="mb-0">
-                © Copyright 2024 Mini Store.<br>
-                Design by <a href="https://bestitsol.com/" class="text-dark">BestITSol</a><br>
-                Powered by <a href="https://bestitsol.com/" class="text-dark">BestITSol</a>
+                Powered by: <a href="https://bestitsol.com/" class="text-dark">BestITSol</a>
               </p>
             </div>
           </div>

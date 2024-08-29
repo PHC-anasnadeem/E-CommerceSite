@@ -1,5 +1,5 @@
 <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
-  <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
+  <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3" >
     <div class="container-fluid">
       <a class="navbar-brand" routerLink="/">
         <img src="../assets/images/logo.png" alt="logo" class="img-fluid mb-3">
@@ -22,25 +22,23 @@
               <a class="nav-link me-4 active" href="#billboard" (click)="scrollTo('billboard')">Home</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link me-4" href="#accessories" (click)="scrollTo('accessories')">Accessories</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link me-4" href="#laptops" (click)="scrollTo('laptops')">Laptops</a>
             </li>
             <li class="nav-item">
               <a class="nav-link me-4" href="#lcds" (click)="scrollTo('lcds')">LCDs</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link me-4" href="#accessories" (click)="scrollTo('accessories')">Accessories</a>
-            </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Pages</a>
               <ul class="dropdown-menu">
                 <li><a href="about.html" class="dropdown-item">About</a></li>
-                <li><a href="blog.html" class="dropdown-item">Blog</a></li>
-                <li><a href="shop.html" class="dropdown-item">Shop</a></li>
-                <li><a href="#cart" class="dropdown-item">Cart</a></li>
-                <li><a href="checkout.html" class="dropdown-item">Checkout</a></li>
-                <li><a href="single-post.html" class="dropdown-item">Single Post</a></li>
-                <li><a href="single-product.html" class="dropdown-item">Single Product</a></li>
-                <li><a href="contact.html" class="dropdown-item">Contact</a></li>
+               
+                <li><a href="/cart" class="dropdown-item">Cart</a></li>
+                <li><a href="/cart" class="dropdown-item">Checkout</a></li>
+                <li><a href="tel:+923104717221" class="dropdown-item" style="text-decoration: none; ">Contact</a></li>
               </ul>
             </li>
             <li class="nav-item">

@@ -309,11 +309,11 @@ h2.category-title {
           }
 
 #footer-bottom {
-  background-color: #fff;
-  color: black;
+  background-color: black;
+  color: white;
   border-top: 1px solid #555555;
   padding: 20px 0;
-  margin-top: 20px;
+  margin-top: 10px;
   height: 20px;
 }
 
