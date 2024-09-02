@@ -322,7 +322,7 @@ h2.category-title {
 }
 
 .footer-menu {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   color: black;
 }
 
@@ -614,4 +614,130 @@ h2.category-title {
     width: 100%; /* Scale image to fit within the container */
     height: 100%; /* Scale image to fit within the container */
    
+  }
+.load-more-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  background-color: #f7c30e; /* Yellow background color */
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+  .load-more-button:hover {
+    background-color: #f7b600; /* Slightly darker yellow */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .load-more-button .icon {
+    margin-right: 8px;
+    font-size: 20px;
+  }
+
+  .load-more-button .text {
+    font-weight: bold;
+  }
+/* General Styling */
+/* General Styling */
+footer {
+  background-color: #343a40; /* Dark background */
+  color: #ffffff; /* White text */
+}
+
+/* Footer Menu */
+.footer-menu {
+  padding: 0;
+}
+
+.footer-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ffffff; /* White text */
+}
+
+.social-links ul {
+  padding: 0;
+  margin: 0;
+}
+
+.social-links li {
+  margin-right: 10px;
+}
+
+.social-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: #ffffff; /* White icons */
+  transition: fill 0.3s ease;
+}
+
+.social-icon:hover svg {
+  fill: #f8f9fa; /* Slightly lighter on hover */
+}
+
+.footer-column h5.widget-title {
+  font-size: 16px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ffffff; /* White underline */
+  padding-bottom: 10px;
+  color: #ffffff; /* White text */
+}
+
+.menu-list a {
+  color: #ffffff; /* White text */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+  .menu-list a:hover {
+    color: #f8f9fa; /* Slightly lighter on hover */
+  }
+
+.footer-divider {
+  border-color: #495057; /* Subtle line color */
+}
+
+.footer-bottom a {
+  color: #ffffff; /* White text */
+}
+
+  .footer-bottom a:hover {
+    color: #f8f9fa; /* Slightly lighter on hover */
+  }
+
+/* Button Styling */
+button, .btn {
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+  
+
+  button:focus, .btn:focus {
+    outline: none;
+  }
+
+/* Logo Styling */
+.logo {
+  fill: #ffffff; /* White logo color (if SVG) */
+  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition */
+}
+
+  .logo:hover {
+    transform: scale(1.1); /* Zoom effect on hover */
+    filter: brightness(1.2); /* Slightly increase brightness */
   }

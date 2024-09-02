@@ -1,15 +1,4 @@
-<!--<header>
-  <div class="dashboard-header">
-    <div class="logo-div">
-      <a  href="index.html">
-        <img alt="logo" class="mb-3 img-fluid" src="../../../../assets/images/logo.png" />
-      </a>
-    </div>
-    <div class="heading">
-      <h3 style="font-family: 'Bebas Neue' ">Admin Dashboard</h3>
-    </div>
-  </div>
-</header>-->
+
 <div class="background">
   <div class="admin-dashboard">
     <!-- Category Selection -->
@@ -47,7 +36,7 @@
           </div>
           <div class="form-group">
             <label for="image">Attach Image:</label>
-            <input class="form-control" id="image" type="file" (change)="onImageSelected($event)" />
+            <input class="form-control" style="height: 40px;" id="image" type="file" (change)="onImageSelected($event)" />
           </div>
 
           <button class="btn btn-success btn-md margin-top-20 margin-right-5px pull-right" type="submit" [disabled]="!uploadDocuments.valid || !isImageSelected">
